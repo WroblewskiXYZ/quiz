@@ -28,6 +28,9 @@ public class Quiz {
     @SerializedName("categories")
     private List<ExCategory> categories;
 
+    @SerializedName("id")
+    private long id;
+
     @SerializedName("title")
     private String title;
 
@@ -59,6 +62,14 @@ public class Quiz {
         this.mainPhoto = mainPhoto;
         this.tags = tags;
         this.category = category;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getButtonStart() {
