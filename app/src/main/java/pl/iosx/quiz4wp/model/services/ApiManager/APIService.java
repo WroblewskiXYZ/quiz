@@ -13,15 +13,15 @@ public class APIService {
 
     static final String BASE_URL = "http://quiz.o2.pl/";
     Retrofit retrofit;
-    Context appContext;
+    Context context;
 
-    public APIService()
+    public APIService(Context context)
     {
+        this.context = context;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
 
 }
