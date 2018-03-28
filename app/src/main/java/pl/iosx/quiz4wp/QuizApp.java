@@ -20,11 +20,6 @@ public class QuizApp extends Application {
     private static QuizApp quizApp;
     private ApplicationComponent applicationComponent;
 
-    public static QuizApp getApp()
-    {
-        return quizApp;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,5 +30,14 @@ public class QuizApp extends Application {
                 .application(this)
                 .build();
         applicationComponent.inject(this);
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
+    public static QuizApp getApp()
+    {
+        return quizApp;
     }
 }

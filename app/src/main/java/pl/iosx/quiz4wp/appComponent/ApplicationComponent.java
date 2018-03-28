@@ -2,6 +2,7 @@ package pl.iosx.quiz4wp.appComponent;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.QuizApp;
 
 /**
@@ -20,5 +21,6 @@ public interface ApplicationComponent {
     }
 
     void inject(QuizApp quizApp);
+    void inject(MainActivity activity);
 
 }
