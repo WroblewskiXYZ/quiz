@@ -16,5 +16,5 @@ public interface QuizResponseApiService {
     Call<QuizResponse> getQuizList();
 
     @GET("api/v1/quiz/{id_quizu}/0")
-    Call<QuizContent> getQuizContent(@Path("id_quizu") String quiz_id);
+    Call<QuizContent> getQuizContent(@Path("id_quizu") int quiz_id);
 }
