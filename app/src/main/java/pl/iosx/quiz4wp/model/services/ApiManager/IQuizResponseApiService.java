@@ -10,7 +10,7 @@ import retrofit2.http.Path;
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-public interface QuizResponseApiService {
+public interface IQuizResponseApiService {
 
     @GET("api/v1/quizzes/0/100")
     Call<QuizResponse> getQuizList();
