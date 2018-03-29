@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
 import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
 import pl.iosx.quiz4wp.model.services.ApiManager.APIService;
 import pl.iosx.quiz4wp.model.services.ApiManager.IResponseListener;
 import retrofit2.Call;
@@ -34,20 +35,24 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccessfulResponse(Call<QuizContent> call, Response<QuizContent> responseResponse) {
                         QuizContent quizContent = responseResponse.body();
+                        QMainPhoto mainPhoto = quizContent.getMainPhoto();
+
                     }
 
                     @Override
                     public void onFailureResponse(Call<QuizContent> call, Response<QuizContent> responseResponse) {
-
+                        System.out.println("onFailureResponse");
                     }
 
                     @Override
                     public void onFailure(Call<QuizContent> call, Throwable t) {
+                        System.out.println("onFailureResponse");
 
                     }
 
                     @Override
                     public void onError(Exception e) {
+                        System.out.println("onFailureResponse");
 
                     }
                 });
@@ -55,16 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailureResponse(Call<QuizResponse> call, Response<QuizResponse> responseResponse) {
+                System.out.println("onFailureResponse");
 
             }
 
             @Override
             public void onFailure(Call<QuizResponse> call, Throwable t) {
+                System.out.println("onFailureResponse");
 
             }
 
             @Override
             public void onError(Exception e) {
+                System.out.println("onFailureResponse");
 
             }
         });

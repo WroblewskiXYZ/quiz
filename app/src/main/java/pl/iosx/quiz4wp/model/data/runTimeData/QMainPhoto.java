@@ -1,37 +1,29 @@
-package pl.iosx.quiz4wp.model.data.apiData.quiz;
-
-import com.google.gson.annotations.SerializedName;
-
-import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
+package pl.iosx.quiz4wp.model.data.runTimeData;
 
 /**
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class MainPhoto extends QMainPhoto{
+public class QMainPhoto {
 
-    @SerializedName("author")
-    private String author;
+    protected String author;
 
-    @SerializedName("width")
-    private int width;
+    protected int width;
 
-    @SerializedName("height")
-    private int height;
+    protected int height;
 
-    @SerializedName("source")
-    private String source;
+    protected String source;
 
-    @SerializedName("title")
-    private String title;
+    protected String title;
 
-    @SerializedName("url")
-    private String url;
+    protected String url;
 
-    @SerializedName("media_id")
-    private int mediaId;
+    protected int mediaId;
 
-    public MainPhoto(String author, int width, int height, String source, String title, String url, int mediaId) {
+    public QMainPhoto() {
+    }
+
+    public QMainPhoto(String author, int width, int height, String source, String title, String url, int mediaId) {
         this.author = author;
         this.width = width;
         this.height = height;

@@ -6,13 +6,14 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import pl.iosx.quiz4wp.model.data.apiData.quizContent.Question;
+import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable(tableName = "ANSWER")
-public class DbiAnswer {
+public class DbiAnswer extends QAnswer{
 
     @DatabaseField(generatedId = true)
     private long id;
@@ -29,7 +30,15 @@ public class DbiAnswer {
     @DatabaseField (columnName = "IS_CORRECT")
     private boolean isCorrect;
 
+
     public DbiAnswer() {
+
+    }
+
+    public DbiAnswer(int order, String text, boolean isCorrect) {
+        this.order = order;
+        this.text = text;
+        this.isCorrect = isCorrect;
     }
 
     public long getId() {
@@ -62,5 +71,13 @@ public class DbiAnswer {
 
     public void setCorrect(boolean correct) {
         isCorrect = correct;
+    }
+
+    public DbiQuestion getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(DbiQuestion question) {
+        this.question = question;
     }
 }

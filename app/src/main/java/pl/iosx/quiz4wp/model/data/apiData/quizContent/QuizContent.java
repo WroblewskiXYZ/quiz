@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.apiData.quiz.Category;
-import pl.iosx.quiz4wp.model.data.apiData.quiz.ExCategory;
 import pl.iosx.quiz4wp.model.data.apiData.quiz.MainPhoto;
 
 /**
@@ -41,9 +40,6 @@ public class QuizContent {
     @SerializedName("buttonStart")
     private String buttonStart;
 
-    @SerializedName("categories")
-    private List<ExCategory> exCategories;
-
     @SerializedName("id")
     private long id;
 
@@ -77,28 +73,7 @@ public class QuizContent {
     @SerializedName("sponsoredResults")
     private SponsoredResult sponsoredResult;
 
-    public QuizContent(Celebrity celebrity, List<Rate> rates, List<Question> questions, String createdAt, boolean sponsored, String title, String type, String content, String buttonStart, List<ExCategory> exCategories, long id, String scripts, MainPhoto mainPhoto, Category category, boolean isBattle, long created, List<LastResult> latestResults, double avgResult, int resultCount, boolean userBattleDone, SponsoredResult sponsoredResult) {
-        this.celebrity = celebrity;
-        this.rates = rates;
-        this.questions = questions;
-        this.createdAt = createdAt;
-        this.sponsored = sponsored;
-        this.title = title;
-        this.type = type;
-        this.content = content;
-        this.buttonStart = buttonStart;
-        this.exCategories = exCategories;
-        this.id = id;
-        this.scripts = scripts;
-        this.mainPhoto = mainPhoto;
-        this.category = category;
-        this.isBattle = isBattle;
-        this.created = created;
-        this.latestResults = latestResults;
-        this.avgResult = avgResult;
-        this.resultCount = resultCount;
-        this.userBattleDone = userBattleDone;
-        this.sponsoredResult = sponsoredResult;
+    public QuizContent() {
     }
 
     public Celebrity getCelebrity() {
@@ -171,14 +146,6 @@ public class QuizContent {
 
     public void setButtonStart(String buttonStart) {
         this.buttonStart = buttonStart;
-    }
-
-    public List<ExCategory> getExCategories() {
-        return exCategories;
-    }
-
-    public void setExCategories(List<ExCategory> exCategories) {
-        this.exCategories = exCategories;
     }
 
     public long getId() {

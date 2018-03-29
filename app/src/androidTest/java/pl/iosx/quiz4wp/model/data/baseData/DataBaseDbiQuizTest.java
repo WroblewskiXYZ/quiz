@@ -2,9 +2,11 @@ package pl.iosx.quiz4wp.model.data.baseData;
 
 import android.support.test.InstrumentationRegistry;
 
+import com.j256.ormlite.dao.BaseForeignCollection;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -12,7 +14,11 @@ import org.junit.Test;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
 import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 
 /**
@@ -56,6 +62,8 @@ public class DataBaseDbiQuizTest {
         daoCategory.createIfNotExists(dbiCategory);
         dbiQuiz.setCategory(dbiCategory);
 
+
+
         DbiQuestion question1 = new DbiQuestion();
         question1.setText("1 pytanie 1");
         DbiAnswer dbiAnswer = new DbiAnswer();
@@ -64,9 +72,11 @@ public class DataBaseDbiQuizTest {
         DbiAnswer dbiAnswer2 = new DbiAnswer();
         dbiAnswer2.setText("1 odpowiedz 2");
         daoAnswer.createIfNotExists(dbiAnswer2);
+        daoQuestions.createIfNotExists(question1);
+        daoQuestions.refresh(question1);
         question1.getAnswers().add(dbiAnswer);
         question1.getAnswers().add(dbiAnswer2);
-        daoQuestions.createIfNotExists(question1);
+
 
         DbiQuestion question2 = new DbiQuestion();
         question2.setText("2 pytanie 1");
@@ -76,6 +86,7 @@ public class DataBaseDbiQuizTest {
         DbiAnswer dbiAnswer4 = new DbiAnswer();
         dbiAnswer4.setText("2 odpowiedz 4");
         daoAnswer.createIfNotExists(dbiAnswer4);
+        //question2.;
         question2.getAnswers().add(dbiAnswer3);
         question2.getAnswers().add(dbiAnswer4);
         daoQuestions.createIfNotExists(question2);
@@ -85,6 +96,9 @@ public class DataBaseDbiQuizTest {
         daoQuiz.createIfNotExists(dbiQuiz);
 
         DbiQuiz dbiQuiz1 = daoQuiz.queryForId(0l);
+
+        DbiAnswer dbiAnswer8 = new DbiAnswer(1,"odpowiedz",true);
+        QAnswer answer = (QAnswer)dbiAnswer8;
 
     }
 

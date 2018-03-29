@@ -2,11 +2,13 @@ package pl.iosx.quiz4wp.model.data.apiData.quizContent;
 
 import com.google.gson.annotations.SerializedName;
 
+import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
+
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-public class Answer {
+public class Answer extends QAnswer{
 
     @SerializedName("image")
     private QImage image;

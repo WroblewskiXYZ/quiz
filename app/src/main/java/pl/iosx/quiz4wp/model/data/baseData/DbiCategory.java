@@ -1,17 +1,16 @@
 package pl.iosx.quiz4wp.model.data.baseData;
 
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.Date;
+import pl.iosx.quiz4wp.model.data.runTimeData.QCategory;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable (tableName = "CATEGORY")
-public class DbiCategory {
+public class DbiCategory extends QCategory {
 
     @DatabaseField(id = true)
     private long id;

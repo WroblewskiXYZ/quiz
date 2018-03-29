@@ -6,12 +6,14 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
+
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable(tableName = "MAIN_PHOTO")
-public class DbiMainPhoto {
+public class DbiMainPhoto extends QMainPhoto {
 
     @DatabaseField(id = true)
     private long id;
@@ -29,10 +31,10 @@ public class DbiMainPhoto {
     private String url;
 
     @DatabaseField (columnName = "WIDTH")
-    private String width;
+    private int width;
 
     @DatabaseField (columnName = "HEIGHT")
-    private String height;
+    private int height;
 
     public DbiMainPhoto() {
     }
@@ -77,19 +79,19 @@ public class DbiMainPhoto {
         this.url = url;
     }
 
-    public String getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(String width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 }

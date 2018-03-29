@@ -25,9 +25,6 @@ public class QuizItem {
     @SerializedName("sponsored")
     private boolean sponsored;
 
-    @SerializedName("categories")
-    private List<ExCategory> categories;
-
     @SerializedName("id")
     private long id;
 
@@ -49,19 +46,7 @@ public class QuizItem {
     @SerializedName("category")
     private Category category;
 
-    public QuizItem(String buttonStart, String shareTitle, int questions, String createdAt, boolean sponsored, List<ExCategory> categories, String title, String type, String content, MainPhoto mainPhoto, List<Tag> tags, Category category) {
-        this.buttonStart = buttonStart;
-        this.shareTitle = shareTitle;
-        this.questions = questions;
-        this.createdAt = createdAt;
-        this.sponsored = sponsored;
-        this.categories = categories;
-        this.title = title;
-        this.type = type;
-        this.content = content;
-        this.mainPhoto = mainPhoto;
-        this.tags = tags;
-        this.category = category;
+    public QuizItem() {
     }
 
     public long getId() {
@@ -110,14 +95,6 @@ public class QuizItem {
 
     public void setSponsored(boolean sponsored) {
         this.sponsored = sponsored;
-    }
-
-    public List<ExCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<ExCategory> categories) {
-        this.categories = categories;
     }
 
     public String getTitle() {

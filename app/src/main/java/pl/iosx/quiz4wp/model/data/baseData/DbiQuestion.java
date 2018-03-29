@@ -17,16 +17,14 @@ public class DbiQuestion {
     @DatabaseField(generatedId = true)
     private long id;
 
+    @ForeignCollectionField
+    private ForeignCollection<DbiAnswer> answers;
+
     @DatabaseField(columnName = "QUIZ_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private DbiQuiz quiz;
 
     @DatabaseField (columnName = "QUESTION_IMAGE_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private DbiQImage qImage;
-
-
-
-    @ForeignCollectionField(columnName = "ANSWER_ID")
-    private ForeignCollection<DbiAnswer> answers;
 
     @DatabaseField (columnName = "Q_TEXT")
     private String text;

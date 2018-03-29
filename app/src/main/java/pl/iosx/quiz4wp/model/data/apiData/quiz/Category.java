@@ -2,11 +2,13 @@ package pl.iosx.quiz4wp.model.data.apiData.quiz;
 
 import com.google.gson.annotations.SerializedName;
 
+import pl.iosx.quiz4wp.model.data.runTimeData.QCategory;
+
 /**
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class Category {
+public class Category extends QCategory{
 
     @SerializedName("id")
     private long id;
