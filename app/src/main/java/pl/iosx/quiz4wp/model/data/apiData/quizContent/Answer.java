@@ -8,7 +8,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-public class Answer extends QAnswer{
+public class Answer{
 
     @SerializedName("image")
     private QImage image;

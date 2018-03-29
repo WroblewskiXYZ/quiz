@@ -1,33 +1,34 @@
 package pl.iosx.quiz4wp.model.data.baseData;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import pl.iosx.quiz4wp.model.data.runTimeData.QCategory;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable (tableName = "CATEGORY")
-public class DbiCategory extends QCategory {
+public class DbiCategory {
 
     @DatabaseField(id = true)
+    @SerializedName("id")
     private long id;
 
     @DatabaseField(columnName = "CATEGORY_NAME")
-    private String category;
+    @SerializedName("name")
+    private String name;
 
     public DbiCategory() {
     }
 
-    public DbiCategory(String category) {
-        this.category = category;
+    public DbiCategory(String name) {
+        this.name = name;
     }
 
-    public DbiCategory(long id, String category) {
+    public DbiCategory(long id, String name) {
         this.id = id;
-        this.category = category;
+        this.name = name;
     }
 
     public long getId() {
@@ -38,11 +39,11 @@ public class DbiCategory extends QCategory {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 }

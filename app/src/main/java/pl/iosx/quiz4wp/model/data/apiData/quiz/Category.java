@@ -8,7 +8,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QCategory;
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class Category extends QCategory{
+public class Category{
 
     @SerializedName("id")
     private long id;

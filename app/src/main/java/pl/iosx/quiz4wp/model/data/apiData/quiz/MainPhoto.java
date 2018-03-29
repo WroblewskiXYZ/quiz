@@ -8,7 +8,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class MainPhoto extends QMainPhoto{
+public class MainPhoto{
 
     @SerializedName("author")
     private String author;

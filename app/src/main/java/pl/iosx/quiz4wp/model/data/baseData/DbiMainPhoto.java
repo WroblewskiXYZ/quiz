@@ -13,7 +13,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
  */
 
 @DatabaseTable(tableName = "MAIN_PHOTO")
-public class DbiMainPhoto extends QMainPhoto {
+public class DbiMainPhoto {
 
     @DatabaseField(id = true)
     private long id;

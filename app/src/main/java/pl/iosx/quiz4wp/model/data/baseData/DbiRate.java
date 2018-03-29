@@ -10,7 +10,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QRate;
  */
 
 @DatabaseTable(tableName = "RATE")
-public class DbiRate extends QRate{
+public class DbiRate{
 
     @DatabaseField(id = true)
     private long id;
@@ -27,7 +27,5 @@ public class DbiRate extends QRate{
     public DbiRate() {
     }
 
-    public DbiRate(int from, int to, String content) {
-        super(from, to, content);
-    }
+
 }

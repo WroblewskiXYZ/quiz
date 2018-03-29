@@ -13,7 +13,7 @@ import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
  */
 
 @DatabaseTable(tableName = "ANSWER")
-public class DbiAnswer extends QAnswer{
+public class DbiAnswer{
 
     @DatabaseField(generatedId = true)
     private long id;

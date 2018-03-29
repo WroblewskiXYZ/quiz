@@ -4,9 +4,9 @@ package pl.iosx.quiz4wp.model.data.runTimeData;
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
-public class QCategory {
+public abstract class QCategory {
 
-    protected long id;
+    long id;
     protected String category;
 
     public QCategory() {

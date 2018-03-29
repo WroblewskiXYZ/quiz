@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccessfulResponse(Call<QuizContent> call, Response<QuizContent> responseResponse) {
                         QuizContent quizContent = responseResponse.body();
-                        QMainPhoto mainPhoto = quizContent.getMainPhoto();
+
 
                     }
 
