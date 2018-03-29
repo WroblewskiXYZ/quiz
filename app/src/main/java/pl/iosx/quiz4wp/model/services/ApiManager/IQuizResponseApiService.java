@@ -1,7 +1,7 @@
 package pl.iosx.quiz4wp.model.services.ApiManager;
 
-import pl.iosx.quiz4wp.model.data.QuizResponse;
-import pl.iosx.quiz4wp.model.data.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
+import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

@@ -4,8 +4,8 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
-import pl.iosx.quiz4wp.model.data.QuizResponse;
-import pl.iosx.quiz4wp.model.data.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
+import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

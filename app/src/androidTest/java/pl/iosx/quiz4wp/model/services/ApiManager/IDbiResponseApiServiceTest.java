@@ -2,8 +2,8 @@ package pl.iosx.quiz4wp.model.services.ApiManager;
 
 import org.junit.Test;
 
-import pl.iosx.quiz4wp.model.data.QuizResponse;
-import pl.iosx.quiz4wp.model.data.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
+import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
-public class IQuizResponseApiServiceTest {
+public class IDbiResponseApiServiceTest {
     @Test
     public void shouldGetQuizContent() throws Exception {
         String BASE_URL = "http://quiz.o2.pl/";
@@ -55,7 +55,7 @@ public class IQuizResponseApiServiceTest {
 
         assertTrue(response.isSuccessful());
         assertTrue(quizResponse.getCount()>0);
-        assertTrue(quizResponse.getCount() == quizResponse.getQuizItems().size());
+        assertTrue(quizResponse.getCount() == quizResponse.getQuizItemItems().size());
     }
 
 

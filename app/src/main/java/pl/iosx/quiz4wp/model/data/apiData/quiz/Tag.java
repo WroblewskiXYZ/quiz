@@ -1,4 +1,5 @@
-package pl.iosx.quiz4wp.model.data.quiz;
+package pl.iosx.quiz4wp.model.data.apiData.quiz;
+
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,24 +7,18 @@ import com.google.gson.annotations.SerializedName;
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class ExCategory {
+public class Tag {
 
     @SerializedName("uid")
     private long id;
-
     @SerializedName("name")
     private String name;
-
-    @SerializedName("secondaryCid")
-    private String secondaryCid;
-
     @SerializedName("type")
     private String type;
 
-    public ExCategory(long id, String name, String secondaryCid, String type) {
+    public Tag(long id, String name, String type) {
         this.id = id;
         this.name = name;
-        this.secondaryCid = secondaryCid;
         this.type = type;
     }
 
@@ -43,14 +38,6 @@ public class ExCategory {
         this.name = name;
     }
 
-    public String getSecondaryCid() {
-        return secondaryCid;
-    }
-
-    public void setSecondaryCid(String secondaryCid) {
-        this.secondaryCid = secondaryCid;
-    }
-
     public String getType() {
         return type;
     }
@@ -59,4 +46,3 @@ public class ExCategory {
         this.type = type;
     }
 }
-

@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.model.data.quiz;
+package pl.iosx.quiz4wp.model.data.apiData.quiz;
 
 import com.google.gson.annotations.SerializedName;
 

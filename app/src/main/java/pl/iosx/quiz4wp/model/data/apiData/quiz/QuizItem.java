@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.model.data.quiz;
+package pl.iosx.quiz4wp.model.data.apiData.quiz;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class Quiz {
+public class QuizItem {
 
     @SerializedName("buttonStart")
     private String buttonStart;
@@ -49,7 +49,7 @@ public class Quiz {
     @SerializedName("category")
     private Category category;
 
-    public Quiz(String buttonStart, String shareTitle, int questions, String createdAt, boolean sponsored, List<ExCategory> categories, String title, String type, String content, MainPhoto mainPhoto, List<Tag> tags, Category category) {
+    public QuizItem(String buttonStart, String shareTitle, int questions, String createdAt, boolean sponsored, List<ExCategory> categories, String title, String type, String content, MainPhoto mainPhoto, List<Tag> tags, Category category) {
         this.buttonStart = buttonStart;
         this.shareTitle = shareTitle;
         this.questions = questions;

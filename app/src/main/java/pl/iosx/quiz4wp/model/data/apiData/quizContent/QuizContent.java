@@ -1,12 +1,12 @@
-package pl.iosx.quiz4wp.model.data.quizContent;
+package pl.iosx.quiz4wp.model.data.apiData.quizContent;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import pl.iosx.quiz4wp.model.data.quiz.Category;
-import pl.iosx.quiz4wp.model.data.quiz.ExCategory;
-import pl.iosx.quiz4wp.model.data.quiz.MainPhoto;
+import pl.iosx.quiz4wp.model.data.apiData.quiz.Category;
+import pl.iosx.quiz4wp.model.data.apiData.quiz.ExCategory;
+import pl.iosx.quiz4wp.model.data.apiData.quiz.MainPhoto;
 
 /**
  * Created by lukaszwroblewski on 27.03.2018.

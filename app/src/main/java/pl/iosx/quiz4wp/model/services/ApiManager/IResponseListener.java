@@ -1,8 +1,6 @@
 package pl.iosx.quiz4wp.model.services.ApiManager;
 
-import pl.iosx.quiz4wp.model.data.QuizResponse;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**

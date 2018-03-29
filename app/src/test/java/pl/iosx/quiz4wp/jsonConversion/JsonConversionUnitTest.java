@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.jsonConvertion;
+package pl.iosx.quiz4wp.jsonConversion;
 
 
 import org.junit.Test;
@@ -8,15 +8,15 @@ import static org.junit.Assert.*;
 import com.google.gson.Gson;
 //import org.apache.commons.io.IOUtils;
 
-import pl.iosx.quiz4wp.model.data.QuizResponse;
-import pl.iosx.quiz4wp.model.data.quiz.Quiz;
-import pl.iosx.quiz4wp.model.data.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
+import pl.iosx.quiz4wp.model.data.apiData.quiz.QuizItem;
+import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-public class JsonConvertionUnitTest {
+public class JsonConversionUnitTest {
 
     @Test
     public void shouldReturnQuizList() throws Exception
@@ -27,13 +27,13 @@ public class JsonConvertionUnitTest {
         String resTxtFileContent = "";//IOUtils.toString(inputStream);
         QuizResponse quizResponse = gson.fromJson(resTxtFileContent,QuizResponse.class);
 
-        assertEquals(quizResponse.getCount(),quizResponse.getQuizItems().size());
+        assertEquals(quizResponse.getCount(),quizResponse.getQuizItemItems().size());
 
-        Quiz quiz = quizResponse.getQuizItems().get(0);
-        assertEquals(quiz.getQuestions(),18);
-        assertEquals(quiz.getCreatedAt(),"2018-03-27T15:36:33+0000");
-        assertEquals(quiz.getId(),6234787811510401l);
-        assertEquals(quiz.getCategory().getId(),2);
+        QuizItem quizItem = quizResponse.getQuizItemItems().get(0);
+        assertEquals(quizItem.getQuestions(),18);
+        assertEquals(quizItem.getCreatedAt(),"2018-03-27T15:36:33+0000");
+        assertEquals(quizItem.getId(),6234787811510401l);
+        assertEquals(quizItem.getCategory().getId(),2);
     }
 
     @Test
