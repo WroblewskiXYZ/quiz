@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import static org.junit.Assert.*;
 import com.google.gson.Gson;
+import com.j256.ormlite.misc.IOUtils;
 //import org.apache.commons.io.IOUtils;
 
 import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
@@ -24,7 +25,7 @@ public class JsonConversionUnitTest {
 
         Gson gson = new Gson();
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("all_quiz_list.txt");
-        String resTxtFileContent = "";//IOUtils.toString(inputStream);
+        String resTxtFileContent = "";//CharStreams.toString(new InputStreamReader(inputStream, Charsets.UTF_8));
         QuizResponse quizResponse = gson.fromJson(resTxtFileContent,QuizResponse.class);
 
         assertEquals(quizResponse.getCount(),quizResponse.getQuizItemItems().size());

@@ -1,12 +1,7 @@
 package pl.iosx.quiz4wp.model.data.baseData;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.Question;
-import pl.iosx.quiz4wp.model.data.runTimeData.QAnswer;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.

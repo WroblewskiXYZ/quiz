@@ -6,6 +6,7 @@ import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.apiData.quiz.Category;
 import pl.iosx.quiz4wp.model.data.apiData.quiz.MainPhoto;
+import pl.iosx.quiz4wp.model.data.baseData.DbiQuestion;
 
 /**
  * Created by lukaszwroblewski on 27.03.2018.
@@ -19,8 +20,8 @@ public class QuizContent {
     @SerializedName("rates")
     private List<Rate> rates;
 
-    @SerializedName("questions")
-    private List<Question> questions;
+   // @SerializedName("questions")
+    private List<DbiQuestion> questions;
 
     @SerializedName("createdAt")
     private String createdAt;
@@ -61,8 +62,8 @@ public class QuizContent {
     @SerializedName("latestResults")
     private List<LastResult> latestResults;
 
-    @SerializedName("avgResult")
-    private double avgResult;
+    //@SerializedName("avgResult")
+    //private double avgResult;
 
     @SerializedName("resultCount")
     private int resultCount;
@@ -92,11 +93,11 @@ public class QuizContent {
         this.rates = rates;
     }
 
-    public List<Question> getQuestions() {
+    public List<DbiQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<DbiQuestion> questions) {
         this.questions = questions;
     }
 
@@ -202,14 +203,6 @@ public class QuizContent {
 
     public void setLatestResults(List<LastResult> latestResults) {
         this.latestResults = latestResults;
-    }
-
-    public double getAvgResult() {
-        return avgResult;
-    }
-
-    public void setAvgResult(double avgResult) {
-        this.avgResult = avgResult;
     }
 
     public int getResultCount() {

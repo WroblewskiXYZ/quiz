@@ -1,0 +1,3 @@
+# Referenced at /Users/lukaszwroblewski/AndroidStudioProjects/MVP/Quiz4WP/app/build/intermediates/manifests/full/debug/AndroidManifest.xml:13
+-keep class pl.iosx.quiz4wp.QuizApp { <init>(...); }
+

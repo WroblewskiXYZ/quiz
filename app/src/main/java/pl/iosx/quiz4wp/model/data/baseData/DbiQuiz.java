@@ -7,6 +7,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
@@ -21,30 +22,13 @@ public class DbiQuiz {
     @DatabaseField (columnName = "QUESTION_SIZE")
     private int questionsSize;
 
-    public int getQuestionsSize() {
-        return questionsSize;
-    }
-
-    public void setQuestionsSize(int questionsSize) {
-        this.questionsSize = questionsSize;
-    }
-
-    public ForeignCollection<DbiQuestion> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(ForeignCollection<DbiQuestion> questions) {
-        this.questions = questions;
-    }
-
     @ForeignCollectionField
-    private ForeignCollection<DbiQuestion> questions;
+    private ForeignCollection<DbiQuestion> questionForeignCollection;
+
+    private List<DbiQuestion> questions;
 
     @DatabaseField (columnName = "CREATED_AT", dataType = DataType.DATE_LONG)
     private Date created;
-
-    //@DatabaseField
-    //private List<ExCategory> categories;
 
     @DatabaseField(columnName = "TITLE")
     private String title;
@@ -55,8 +39,8 @@ public class DbiQuiz {
     @DatabaseField(columnName = "CONTENT")
     private String content;
 
-    //@SerializedName("mainPhoto")
-    //private MainPhoto mainPhoto;
+    @DatabaseField(columnName = "MAIN_PHOTO_ID", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
+    private DbiMainPhoto mainPhoto;
 
     @DatabaseField(columnName = "BATTLE")
     private boolean isBattle;
@@ -100,6 +84,30 @@ public class DbiQuiz {
         this.id = id;
     }
 
+    public int getQuestionsSize() {
+        return questionsSize;
+    }
+
+    public void setQuestionsSize(int questionsSize) {
+        this.questionsSize = questionsSize;
+    }
+
+    public ForeignCollection<DbiQuestion> getQuestionForeignCollection() {
+        return questionForeignCollection;
+    }
+
+    public void setQuestionForeignCollection(ForeignCollection<DbiQuestion> questionForeignCollection) {
+        this.questionForeignCollection = questionForeignCollection;
+    }
+
+    public List<DbiQuestion> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<DbiQuestion> questions) {
+        this.questions = questions;
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -132,12 +140,28 @@ public class DbiQuiz {
         this.content = content;
     }
 
+    public DbiMainPhoto getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(DbiMainPhoto mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
     public boolean isBattle() {
         return isBattle;
     }
 
     public void setBattle(boolean battle) {
         isBattle = battle;
+    }
+
+    public DbiCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(DbiCategory category) {
+        this.category = category;
     }
 
     public double getAvgResult() {
@@ -162,13 +186,5 @@ public class DbiQuiz {
 
     public void setUserBattleDone(boolean userBattleDone) {
         this.userBattleDone = userBattleDone;
-    }
-
-    public DbiCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(DbiCategory category) {
-        this.category = category;
     }
 }
