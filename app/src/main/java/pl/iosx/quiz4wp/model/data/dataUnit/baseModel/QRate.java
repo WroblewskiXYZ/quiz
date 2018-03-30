@@ -1,26 +1,40 @@
-package pl.iosx.quiz4wp.model.data.apiData.quizContent;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
 import com.google.gson.annotations.SerializedName;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
- * Created by lukaszwroblewski on 28.03.2018.
+ * Created by lukaszwroblewski on 29.03.2018.
  */
 
-public class Rate {
+@DatabaseTable(tableName = "RATE")
+public class QRate {
+
+    @DatabaseField(id = true)
+    private long id;
 
     @SerializedName("from")
+    @DatabaseField (columnName = "PARAM_FROM")
     private int from;
 
     @SerializedName("to")
+    @DatabaseField (columnName = "PARAM_TO")
     private int to;
 
     @SerializedName("content")
+    @DatabaseField (columnName = "CONTENT")
     private String content;
 
-    public Rate(int from, int to, String content) {
-        this.from = from;
-        this.to = to;
-        this.content = content;
+    public QRate() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getFrom() {

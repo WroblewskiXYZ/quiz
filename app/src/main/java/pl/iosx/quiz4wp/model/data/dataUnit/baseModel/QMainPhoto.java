@@ -1,42 +1,44 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
-import com.j256.ormlite.field.DataType;
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Date;
-
-import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable(tableName = "MAIN_PHOTO")
-public class DbiMainPhoto {
+public class QMainPhoto {
 
     @DatabaseField(id = true)
     private long id;
 
+    @SerializedName("author")
     @DatabaseField (columnName = "AUTHOR")
     private String author;
 
+    @SerializedName("source")
     @DatabaseField (columnName = "SOURCE")
     private String source;
 
+    @SerializedName("title")
     @DatabaseField (columnName = "TITLE")
     private String title;
 
+    @SerializedName("url")
     @DatabaseField (columnName = "URL")
     private String url;
 
+    @SerializedName("width")
     @DatabaseField (columnName = "WIDTH")
     private int width;
 
+    @SerializedName("height")
     @DatabaseField (columnName = "HEIGHT")
     private int height;
 
-    public DbiMainPhoto() {
+    public QMainPhoto() {
     }
 
     public long getId() {

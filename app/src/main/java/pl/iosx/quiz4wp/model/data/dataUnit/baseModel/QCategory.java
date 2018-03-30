@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 
 @DatabaseTable (tableName = "CATEGORY")
-public class DbiCategory {
+public class QCategory {
 
     @DatabaseField(id = true)
     @SerializedName("id")
@@ -19,14 +19,14 @@ public class DbiCategory {
     @SerializedName("name")
     private String name;
 
-    public DbiCategory() {
+    public QCategory() {
     }
 
-    public DbiCategory(String name) {
+    public QCategory(String name) {
         this.name = name;
     }
 
-    public DbiCategory(long id, String name) {
+    public QCategory(long id, String name) {
         this.id = id;
         this.name = name;
     }

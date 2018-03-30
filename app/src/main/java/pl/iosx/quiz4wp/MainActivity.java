@@ -5,9 +5,8 @@ import android.os.Bundle;
 
 import javax.inject.Inject;
 
-import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
-import pl.iosx.quiz4wp.model.data.runTimeData.QMainPhoto;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
 import pl.iosx.quiz4wp.model.services.ApiManager.APIService;
 import pl.iosx.quiz4wp.model.services.ApiManager.IResponseListener;
 import retrofit2.Call;
@@ -27,25 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
         QuizApp.getApp().getApplicationComponent().inject(this);
 
-        apiService.getQuizResponse(new IResponseListener<QuizResponse>() {
+        apiService.getQuizResponse(new IResponseListener<ApiQuizListResponse>() {
             @Override
-            public void onSuccessfulResponse(Call<QuizResponse> call, Response<QuizResponse> responseResponse) {
-                QuizResponse quizResponse = responseResponse.body();
-                apiService.getQuizContent("" + quizResponse.getQuizItemItems().get(0).getId(), new IResponseListener<QuizContent>() {
+            public void onSuccessfulResponse(Call<ApiQuizListResponse> call, Response<ApiQuizListResponse> responseResponse) {
+                ApiQuizListResponse apiQuizListResponse = responseResponse.body();
+                apiService.getQuizContent("" + apiQuizListResponse.getApiQuizItemItems().get(0).getId(), new IResponseListener<ApiQuizContent>() {
                     @Override
-                    public void onSuccessfulResponse(Call<QuizContent> call, Response<QuizContent> responseResponse) {
-                        QuizContent quizContent = responseResponse.body();
+                    public void onSuccessfulResponse(Call<ApiQuizContent> call, Response<ApiQuizContent> responseResponse) {
+                        ApiQuizContent apiQuizContent = responseResponse.body();
 
 
                     }
 
                     @Override
-                    public void onFailureResponse(Call<QuizContent> call, Response<QuizContent> responseResponse) {
+                    public void onFailureResponse(Call<ApiQuizContent> call, Response<ApiQuizContent> responseResponse) {
                         System.out.println("onFailureResponse");
                     }
 
                     @Override
-                    public void onFailure(Call<QuizContent> call, Throwable t) {
+                    public void onFailure(Call<ApiQuizContent> call, Throwable t) {
                         System.out.println("onFailureResponse");
 
                     }
@@ -59,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailureResponse(Call<QuizResponse> call, Response<QuizResponse> responseResponse) {
+            public void onFailureResponse(Call<ApiQuizListResponse> call, Response<ApiQuizListResponse> responseResponse) {
                 System.out.println("onFailureResponse");
 
             }
 
             @Override
-            public void onFailure(Call<QuizResponse> call, Throwable t) {
+            public void onFailure(Call<ApiQuizListResponse> call, Throwable t) {
                 System.out.println("onFailureResponse");
 
             }

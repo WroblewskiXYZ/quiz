@@ -1,5 +1,6 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -8,32 +9,28 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 
 @DatabaseTable(tableName = "ANSWER")
-public class DbiAnswer{
+public class QAnswer {
 
     @DatabaseField(generatedId = true)
     private long id;
 
     @DatabaseField(columnName = "QUESTION_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private DbiQuestion question;
+    private QQuestion question;
 
+    @SerializedName("order")
     @DatabaseField (columnName = "PARAM_ORDER")
     private int order;
 
+    @SerializedName("text")
     @DatabaseField (columnName = "A_TEXT")
     private String text;
 
+    @SerializedName("isCorrect")
     @DatabaseField (columnName = "IS_CORRECT")
-    private boolean isCorrect;
+    private int isCorrect;
 
+    public QAnswer() {
 
-    public DbiAnswer() {
-
-    }
-
-    public DbiAnswer(int order, String text, boolean isCorrect) {
-        this.order = order;
-        this.text = text;
-        this.isCorrect = isCorrect;
     }
 
     public long getId() {
@@ -42,6 +39,14 @@ public class DbiAnswer{
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public QQuestion getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QQuestion question) {
+        this.question = question;
     }
 
     public int getOrder() {
@@ -60,19 +65,11 @@ public class DbiAnswer{
         this.text = text;
     }
 
-    public boolean isCorrect() {
+    public int getIsCorrect() {
         return isCorrect;
     }
 
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
-    }
-
-    public DbiQuestion getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(DbiQuestion question) {
-        this.question = question;
+    public void setIsCorrect(int isCorrect) {
+        this.isCorrect = isCorrect;
     }
 }

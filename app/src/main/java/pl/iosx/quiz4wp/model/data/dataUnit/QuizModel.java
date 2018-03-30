@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
@@ -9,12 +9,16 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 import java.util.List;
 
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QMainPhoto;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
+
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable (tableName = "QUIZ_ITEM")
-public class DbiQuiz {
+public class QuizModel {
 
     @DatabaseField(id = true)
     private long id;
@@ -23,9 +27,9 @@ public class DbiQuiz {
     private int questionsSize;
 
     @ForeignCollectionField
-    private ForeignCollection<DbiQuestion> questionForeignCollection;
+    private ForeignCollection<QQuestion> questionForeignCollection;
 
-    private List<DbiQuestion> questions;
+    private List<QQuestion> questions;
 
     @DatabaseField (columnName = "CREATED_AT", dataType = DataType.DATE_LONG)
     private Date created;
@@ -40,13 +44,13 @@ public class DbiQuiz {
     private String content;
 
     @DatabaseField(columnName = "MAIN_PHOTO_ID", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
-    private DbiMainPhoto mainPhoto;
+    private QMainPhoto mainPhoto;
 
     @DatabaseField(columnName = "BATTLE")
     private boolean isBattle;
 
     @DatabaseField(columnName = "CATEGORY_ID", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
-    private DbiCategory category;
+    private QCategory category;
 
     @DatabaseField(columnName = "AVG_RESULT")
     private double avgResult;
@@ -57,12 +61,12 @@ public class DbiQuiz {
     @DatabaseField(columnName = "USE_BATTLE_DONE")
     private boolean userBattleDone;
 
-    public DbiQuiz()
+    public QuizModel()
     {
 
     }
 
-    public DbiQuiz(long id, int questionsSize, Date created, String title, String type, String content, boolean isBattle, DbiCategory category, double avgResult, int resultCount, boolean userBattleDone) {
+    public QuizModel(long id, int questionsSize, Date created, String title, String type, String content, boolean isBattle, QCategory category, double avgResult, int resultCount, boolean userBattleDone) {
         this.id = id;
         this.questionsSize = questionsSize;
         this.created = created;
@@ -92,19 +96,19 @@ public class DbiQuiz {
         this.questionsSize = questionsSize;
     }
 
-    public ForeignCollection<DbiQuestion> getQuestionForeignCollection() {
+    public ForeignCollection<QQuestion> getQuestionForeignCollection() {
         return questionForeignCollection;
     }
 
-    public void setQuestionForeignCollection(ForeignCollection<DbiQuestion> questionForeignCollection) {
+    public void setQuestionForeignCollection(ForeignCollection<QQuestion> questionForeignCollection) {
         this.questionForeignCollection = questionForeignCollection;
     }
 
-    public List<DbiQuestion> getQuestions() {
+    public List<QQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<DbiQuestion> questions) {
+    public void setQuestions(List<QQuestion> questions) {
         this.questions = questions;
     }
 
@@ -140,11 +144,11 @@ public class DbiQuiz {
         this.content = content;
     }
 
-    public DbiMainPhoto getMainPhoto() {
+    public QMainPhoto getMainPhoto() {
         return mainPhoto;
     }
 
-    public void setMainPhoto(DbiMainPhoto mainPhoto) {
+    public void setMainPhoto(QMainPhoto mainPhoto) {
         this.mainPhoto = mainPhoto;
     }
 
@@ -156,11 +160,11 @@ public class DbiQuiz {
         isBattle = battle;
     }
 
-    public DbiCategory getCategory() {
+    public QCategory getCategory() {
         return category;
     }
 
-    public void setCategory(DbiCategory category) {
+    public void setCategory(QCategory category) {
         this.category = category;
     }
 

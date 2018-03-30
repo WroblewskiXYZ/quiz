@@ -4,8 +4,8 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
-import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +34,7 @@ public class APIService {
                 .build();
     }
 
-    public void getSimpleQuizResponse(final ISimpleResponseListener<QuizResponse> responseListener)
+    public void getSimpleQuizResponse(final ISimpleResponseListener<ApiQuizListResponse> responseListener)
     {
         try
         {
@@ -47,7 +47,7 @@ public class APIService {
         }
     }
 
-    public void getSimpleQuizContent(String quiz_id, final ISimpleResponseListener<QuizContent> responseListener)
+    public void getSimpleQuizContent(String quiz_id, final ISimpleResponseListener<ApiQuizContent> responseListener)
     {
         try
         {
@@ -61,7 +61,7 @@ public class APIService {
     }
 
 
-    public void getQuizResponse(final IResponseListener<QuizResponse> responseListener)
+    public void getQuizResponse(final IResponseListener<ApiQuizListResponse> responseListener)
     {
         try
         {
@@ -74,7 +74,7 @@ public class APIService {
         }
     }
 
-    public void getQuizContent(String quiz_id, final IResponseListener<QuizContent> responseListener)
+    public void getQuizContent(String quiz_id, final IResponseListener<ApiQuizContent> responseListener)
     {
         try
         {
@@ -83,7 +83,8 @@ public class APIService {
         }
         catch (Exception e)
         {
-            responseListener.onError(e);
+            throw e;
+            //responseListener.onError(e);
         }
     }
 

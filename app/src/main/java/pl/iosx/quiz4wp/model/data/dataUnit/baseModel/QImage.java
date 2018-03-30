@@ -1,5 +1,6 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -8,30 +9,32 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 
 @DatabaseTable(tableName = "QUESTION_IMAGE")
-public class DbiQImage {
+public class QImage {
 
     @DatabaseField(id = true)
     private long id;
 
+    @SerializedName("author")
     @DatabaseField (columnName = "AUTHOR")
     private String author;
 
+    @SerializedName("source")
     @DatabaseField (columnName = "SOURCE")
     private String source;
 
-    @DatabaseField (columnName = "MEDIA_ID")
-    private long mediaId;
-
+    @SerializedName("url")
     @DatabaseField (columnName = "URL")
     private String url;
 
+    @SerializedName("width")
     @DatabaseField (columnName = "WIDTH")
     private String width;
 
+    @SerializedName("height")
     @DatabaseField (columnName = "HEIGHT")
     private String height;
 
-    public DbiQImage() {
+    public QImage() {
     }
 
     public long getId() {
@@ -56,14 +59,6 @@ public class DbiQImage {
 
     public void setSource(String source) {
         this.source = source;
-    }
-
-    public long getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(long mediaId) {
-        this.mediaId = mediaId;
     }
 
     public String getUrl() {

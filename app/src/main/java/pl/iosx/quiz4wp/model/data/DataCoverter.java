@@ -6,10 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import pl.iosx.quiz4wp.model.data.apiData.QuizResponse;
-import pl.iosx.quiz4wp.model.data.apiData.quiz.QuizItem;
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.QuizContent;
-import pl.iosx.quiz4wp.model.data.baseData.DbiQuiz;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizItem;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 
 /**
  * Created by lukaszwroblewski on 30.03.2018.
@@ -17,24 +16,24 @@ import pl.iosx.quiz4wp.model.data.baseData.DbiQuiz;
 
 public class DataCoverter {
 
-    public static DbiQuiz create(QuizItem quizItem)
+    public static QuizModel create(ApiQuizItem apiQuizItem)
     {
-        DbiQuiz dbiQuiz = new DbiQuiz();
-        update(dbiQuiz,quizItem);
-        return dbiQuiz;
+        QuizModel quizModel = new QuizModel();
+        update(quizModel, apiQuizItem);
+        return quizModel;
     }
 
-    public static void update(DbiQuiz dbiQuiz, QuizItem quizItem)
+    public static void update(QuizModel quizModel, ApiQuizItem apiQuizItem)
     {
-        dbiQuiz.setId(quizItem.getId());
-        dbiQuiz.setQuestionsSize(dbiQuiz.getQuestionsSize());
+        quizModel.setId(apiQuizItem.getId());
+        quizModel.setQuestionsSize(quizModel.getQuestionsSize());
     }
 
-    public static void update(DbiQuiz dbiQuiz, QuizContent quizContent)
+    public static void update(QuizModel quizModel, ApiQuizContent apiQuizContent)
     {
-        if(dbiQuiz.getId() == quizContent.getId())
+        //if(quizModel.getId() == apiQuizContent.getId())
         {
-            dbiQuiz.setQuestions(quizContent.getQuestions());
+            //quizModel.setQuestions(apiQuizContent.getQuestions());
         }
 
     }

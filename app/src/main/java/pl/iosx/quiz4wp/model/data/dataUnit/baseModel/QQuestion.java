@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.model.data.baseData;
+package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.dao.ForeignCollection;
@@ -8,31 +8,30 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.List;
 
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.Answer;
-import pl.iosx.quiz4wp.model.data.apiData.quizContent.QImage;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable(tableName = "QUESTION_ITEM")
-public class DbiQuestion {
+public class QQuestion {
 
     @DatabaseField(generatedId = true)
     private long id;
 
     @ForeignCollectionField
-    private ForeignCollection<DbiAnswer> answerForeignCollection;
+    private ForeignCollection<QAnswer> answerForeignCollection;
 
     @SerializedName("answers")
-    List<DbiAnswer> answers;
+    List<QAnswer> answers;
 
     @DatabaseField(columnName = "QUIZ_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private DbiQuiz quiz;
+    private QuizModel quiz;
 
     @SerializedName("image")
     @DatabaseField (columnName = "QUESTION_IMAGE_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private DbiQImage qImage;
+    private QImage qImage;
 
     @SerializedName("text")
     @DatabaseField (columnName = "Q_TEXT")
@@ -48,9 +47,9 @@ public class DbiQuestion {
 
     @DatabaseField (columnName = "Q_ORDER")
     @SerializedName("order")
-    private String order;
+    private int order;
 
-    public DbiQuestion() {
+    public QQuestion() {
     }
 
     public long getId() {
@@ -61,37 +60,23 @@ public class DbiQuestion {
         this.id = id;
     }
 
-    public ForeignCollection<DbiAnswer> getAnswerForeignCollection() {
+    public ForeignCollection<QAnswer> getAnswerForeignCollection() {
         return answerForeignCollection;
     }
 
-    public void setAnswerForeignCollection(ForeignCollection<DbiAnswer> answerForeignCollection) {
+    public void setAnswerForeignCollection(ForeignCollection<QAnswer> answerForeignCollection) {
         this.answerForeignCollection = answerForeignCollection;
     }
 
-    public List<DbiAnswer> getAnswers() {
-        return answers;
-    }
 
-    public void setAnswers(List<DbiAnswer> answers) {
-        this.answers = answers;
-    }
-
-    public DbiQuiz getQuiz() {
+    public QuizModel getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(DbiQuiz quiz) {
+    public void setQuiz(QuizModel quiz) {
         this.quiz = quiz;
     }
 
-    public DbiQImage getqImage() {
-        return qImage;
-    }
-
-    public void setqImage(DbiQImage qImage) {
-        this.qImage = qImage;
-    }
 
     public String getText() {
         return text;
@@ -117,11 +102,11 @@ public class DbiQuestion {
         this.type = type;
     }
 
-    public String getOrder() {
+    public int getOrder() {
         return order;
     }
 
-    public void setOrder(String order) {
+    public void setOrder(int order) {
         this.order = order;
     }
 }

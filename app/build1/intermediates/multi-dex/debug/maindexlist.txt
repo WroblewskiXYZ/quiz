@@ -544,7 +544,7 @@ android/support/v4/os/ParcelableCompat.class
 dagger/android/DaggerActivity.class
 android/support/v4/widget/CursorAdapter.class
 android/support/v4/content/WakefulBroadcastReceiver.class
-pl/iosx/quiz4wp/model/data/quizContent/QuizContent.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/QuizContent.class
 android/support/v4/widget/SimpleCursorAdapter.class
 android/support/v7/widget/FastScroller$DragState.class
 android/support/v4/view/MenuCompat.class
@@ -557,9 +557,9 @@ android/support/v4/view/ScaleGestureDetectorCompat.class
 android/support/v4/provider/FontsContractCompat$FontFamilyResult$FontResultStatus.class
 android/support/v4/media/session/MediaControllerCompat$Callback.class
 android/support/v4/widget/DrawerLayout.class
-pl/iosx/quiz4wp/model/data/quizContent/LastResult.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/LastResult.class
 android/support/v4/view/LayoutInflaterCompat.class
-pl/iosx/quiz4wp/model/data/quizContent/Celebrity.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/Celebrity.class
 android/support/v7/app/NotificationCompat$MediaStyle.class
 android/support/v4/app/FragmentTransaction.class
 android/support/v4/view/PagerTitleStrip.class
@@ -587,7 +587,7 @@ android/support/v4/widget/ListPopupWindowCompat.class
 android/support/v4/provider/FontsContractCompat$FontRequestCallback$FontRequestFailReason.class
 android/support/v4/widget/SearchViewCompat.class
 dagger/android/AndroidMemorySensitiveReferenceManager.class
-pl/iosx/quiz4wp/model/data/quizContent/QImage.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/QImage.class
 android/support/v4/widget/SlidingPaneLayout.class
 android/support/v4/media/MediaBrowserServiceCompat$BrowserRoot.class
 dagger/android/AndroidInjector$Factory.class
@@ -597,7 +597,7 @@ android/support/v4/app/FragmentTransaction$Transit.class
 android/support/v4/app/ActionBarDrawerToggle$Delegate.class
 dagger/android/OnTrimMemoryValue.class
 android/support/v4/os/BuildCompat.class
-pl/iosx/quiz4wp/model/data/quizContent/Question.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/Question.class
 pl/iosx/quiz4wp/model/data/quiz/Quiz.class
 android/support/v4/widget/DrawerLayout$EdgeGravity.class
 android/support/v4/media/session/MediaControllerCompat$TransportControls.class
@@ -606,9 +606,9 @@ android/support/v4/view/LayoutInflaterFactory.class
 android/support/v4/content/IntentCompat.class
 android/support/v4/net/TrafficStatsCompat.class
 android/support/v4/widget/ScrollerCompat.class
-pl/iosx/quiz4wp/model/data/quizContent/Rate.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/Rate.class
 android/support/v4/app/Fragment.class
-pl/iosx/quiz4wp/model/data/quizContent/SponsoredResult.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/SponsoredResult.class
 android/support/v4/view/accessibility/AccessibilityRecordCompat.class
 android/support/v4/widget/SearchViewCompat$OnQueryTextListener.class
 android/support/v4/app/FragmentManager.class
@@ -640,7 +640,7 @@ android/support/v4/os/ParcelableCompatCreatorCallbacks.class
 android/support/v4/view/VelocityTrackerCompat.class
 android/support/v4/text/TextUtilsCompat.class
 dagger/android/package-info.class
-pl/iosx/quiz4wp/model/data/quizContent/Answer.class
+pl/iosx/quiz4wp/model/data/apiQuizContent/Answer.class
 android/support/v4/app/ActionBarDrawerToggle$DelegateProvider.class
 android/support/v7/app/NotificationCompat$DecoratedCustomViewStyle.class
 dagger/android/AndroidInjectionModule.class

@@ -1,14 +1,15 @@
-package pl.iosx.quiz4wp.model.data.apiData.quiz;
+package pl.iosx.quiz4wp.model.data.dataUnit;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QMainPhoto;
 
 /**
  * Created by lukaszwroblewski on 27.03.2018.
  */
 
-public class QuizItem {
+public class ApiQuizItem {
 
     @SerializedName("buttonStart")
     private String buttonStart;
@@ -38,23 +39,12 @@ public class QuizItem {
     private String content;
 
     @SerializedName("mainPhoto")
-    private MainPhoto mainPhoto;
-
-    @SerializedName("tags")
-    List<Tag> tags;
+    private QMainPhoto mainPhoto;
 
     @SerializedName("category")
-    private Category category;
+    private QCategory category;
 
-    public QuizItem() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public ApiQuizItem() {
     }
 
     public String getButtonStart() {
@@ -97,6 +87,14 @@ public class QuizItem {
         this.sponsored = sponsored;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -121,27 +119,19 @@ public class QuizItem {
         this.content = content;
     }
 
-    public MainPhoto getMainPhoto() {
+    public QMainPhoto getMainPhoto() {
         return mainPhoto;
     }
 
-    public void setMainPhoto(MainPhoto mainPhoto) {
+    public void setMainPhoto(QMainPhoto mainPhoto) {
         this.mainPhoto = mainPhoto;
     }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public Category getCategory() {
+    public QCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(QCategory category) {
         this.category = category;
     }
 }
