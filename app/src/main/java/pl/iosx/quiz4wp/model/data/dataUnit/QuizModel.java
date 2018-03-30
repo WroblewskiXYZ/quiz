@@ -9,9 +9,11 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 import java.util.List;
 
+import pl.iosx.quiz4wp.model.data.DataConverter;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QMainPhoto;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QRate;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
@@ -61,23 +63,93 @@ public class QuizModel {
     @DatabaseField(columnName = "USE_BATTLE_DONE")
     private boolean userBattleDone;
 
+    @DatabaseField(columnName = "DOWNLOAD_STATUS")
+    private boolean isDownloaded;
+
+    @DatabaseField(columnName = "DOWNLOAD_STATUS")
+
+    @ForeignCollectionField
+    private ForeignCollection<QRate> rateForeignCollection;
+
+    private List<QRate> rates;
+
     public QuizModel()
     {
-
+        isDownloaded = false;
     }
 
-    public QuizModel(long id, int questionsSize, Date created, String title, String type, String content, boolean isBattle, QCategory category, double avgResult, int resultCount, boolean userBattleDone) {
+    public QuizModel(ApiQuizItem item)
+    {
+        update(item);
+    }
+
+    public QuizModel(long id, int questionsSize, List<QQuestion> questions, Date created, String title, String type, String content, QMainPhoto mainPhoto, boolean isBattle, QCategory category, double avgResult, int resultCount, boolean userBattleDone) {
         this.id = id;
         this.questionsSize = questionsSize;
+        this.questions = questions;
         this.created = created;
         this.title = title;
         this.type = type;
         this.content = content;
+        this.mainPhoto = mainPhoto;
         this.isBattle = isBattle;
         this.category = category;
         this.avgResult = avgResult;
         this.resultCount = resultCount;
         this.userBattleDone = userBattleDone;
+    }
+
+    public void update(ApiQuizItem item)
+    {
+        this.id = item.getId();
+        this.questionsSize = item.getQuestionCount();
+        this.created = DataConverter.getDateFromDateString(item.getCreatedAt());
+        this.title = item.getTitle();
+        this.type = item.getType();
+        this.content = item.getContent();
+        this.mainPhoto = item.getMainPhoto();
+        this.category = item.getCategory();
+
+        this.questions = null;
+        this.isBattle = false;
+        this.avgResult = 0;
+        this.resultCount = 0;
+        this.userBattleDone = false;
+        this.rates = null;
+
+        this.isDownloaded = false;
+
+    }
+
+    public void update(ApiQuizContent content)
+    {
+        this.id = content.getId();
+        this.questions = content.getQuestions();
+        this.created = DataConverter.getDateFromDateString(content.getCreatedAt());
+        this.title = content.getTitle();
+        this.type = content.getType();
+        this.content = content.getContent();
+        this.mainPhoto = content.getMainPhoto();
+
+        this.isBattle = content.isBattle();
+        this.avgResult = content.getAvgResult();
+        this.resultCount = content.getResultCount();
+        this.userBattleDone = content.isUserBattleDone();
+        this.rates = content.getRates();
+
+        if(questions!=null)
+        {
+            this.questionsSize = questions.size();
+            this.isDownloaded = true;
+        }
+    }
+
+    public boolean isDownloaded() {
+        return isDownloaded;
+    }
+
+    public void setDownloaded(boolean downloaded) {
+        isDownloaded = downloaded;
     }
 
     public long getId() {
@@ -190,5 +262,13 @@ public class QuizModel {
 
     public void setUserBattleDone(boolean userBattleDone) {
         this.userBattleDone = userBattleDone;
+    }
+
+    public List<QRate> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<QRate> rates) {
+        this.rates = rates;
     }
 }

@@ -1,15 +1,19 @@
 package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.Comparator;
 
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
 @DatabaseTable (tableName = "CATEGORY")
-public class QCategory {
+public class QCategory implements Comparable<QCategory>{
 
     @DatabaseField(id = true)
     @SerializedName("id")
@@ -45,5 +49,12 @@ public class QCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(@NonNull QCategory qCategory) {
+        if(id == qCategory.id) return 0;
+        else if( id> qCategory.id) return 1;
+        else return -1;
     }
 }

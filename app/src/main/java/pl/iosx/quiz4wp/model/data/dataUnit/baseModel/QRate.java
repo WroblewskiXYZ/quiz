@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
@@ -11,8 +13,11 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "RATE")
 public class QRate {
 
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private long id;
+
+    @DatabaseField(columnName = "QUIZ_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
+    private QuizModel quiz;
 
     @SerializedName("from")
     @DatabaseField (columnName = "PARAM_FROM")

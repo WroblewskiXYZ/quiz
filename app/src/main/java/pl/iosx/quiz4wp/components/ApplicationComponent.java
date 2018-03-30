@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.appComponent;
+package pl.iosx.quiz4wp.components;
 
 import dagger.BindsInstance;
 import dagger.Component;

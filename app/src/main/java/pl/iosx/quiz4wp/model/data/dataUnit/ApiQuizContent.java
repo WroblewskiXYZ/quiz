@@ -62,4 +62,124 @@ public class ApiQuizContent {
 
     public ApiQuizContent() {
     }
+
+    public List<QRate> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<QRate> rates) {
+        this.rates = rates;
+    }
+
+    public List<QQuestion> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QQuestion> questions) {
+        this.questions = questions;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getScripts() {
+        return scripts;
+    }
+
+    public void setScripts(String scripts) {
+        this.scripts = scripts;
+    }
+
+    public QMainPhoto getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(QMainPhoto mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
+    public QCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(QCategory category) {
+        this.category = category;
+    }
+
+    public boolean isBattle() {
+        return isBattle;
+    }
+
+    public void setBattle(boolean battle) {
+        isBattle = battle;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public double getAvgResult() {
+        return avgResult;
+    }
+
+    public void setAvgResult(double avgResult) {
+        this.avgResult = avgResult;
+    }
+
+    public int getResultCount() {
+        return resultCount;
+    }
+
+    public void setResultCount(int resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public boolean isUserBattleDone() {
+        return userBattleDone;
+    }
+
+    public void setUserBattleDone(boolean userBattleDone) {
+        this.userBattleDone = userBattleDone;
+    }
 }

@@ -17,8 +17,8 @@ public class ApiQuizItem {
     @SerializedName("shareTitle")
     private String shareTitle;
 
-    @SerializedName("questions")
-    private int questions;
+    @SerializedName("questionCount")
+    private int questionCount;
 
     @SerializedName("createdAt")
     private String createdAt;
@@ -63,12 +63,12 @@ public class ApiQuizItem {
         this.shareTitle = shareTitle;
     }
 
-    public int getQuestions() {
-        return questions;
+    public int getQuestionCount() {
+        return questionCount;
     }
 
-    public void setQuestions(int questions) {
-        this.questions = questions;
+    public void setQuestionCount(int questionCount) {
+        this.questionCount = questionCount;
     }
 
     public String getCreatedAt() {

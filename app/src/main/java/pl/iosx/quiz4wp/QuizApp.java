@@ -4,8 +4,8 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
-import pl.iosx.quiz4wp.appComponent.ApplicationComponent;
-import pl.iosx.quiz4wp.appComponent.DaggerApplicationComponent;
+import pl.iosx.quiz4wp.components.ApplicationComponent;
+import pl.iosx.quiz4wp.components.DaggerApplicationComponent;
 import pl.iosx.quiz4wp.model.services.ApiManager.APIService;
 
 /**
