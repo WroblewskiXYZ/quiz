@@ -40,6 +40,5 @@ dependencies {
     implementation group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.15.1'
    // compile group: 'com.google.guava', name: 'guava', version: 'r09'
-   // implementation group: 'com.google.guava', name: 'guava', version: '24.1-jre'
-
+    implementation 'com.google.guava:guava:23.3-android'
 }

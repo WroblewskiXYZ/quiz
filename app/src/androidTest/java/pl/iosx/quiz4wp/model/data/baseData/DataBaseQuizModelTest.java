@@ -97,8 +97,8 @@ public class DataBaseQuizModelTest {
 
         QuizModel quizModel1 = daoQuiz.queryForId(0l);
 
-        QAnswer qAnswer8 = new QAnswer(1,"odpowiedz",true);
-        QAnswer answer = (QAnswer) qAnswer8;
+        //QAnswer qAnswer8 = new QAnswer(1,"odpowiedz",true);
+        //QAnswer answer = (QAnswer) qAnswer8;
 
     }
 
