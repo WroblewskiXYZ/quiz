@@ -11,7 +11,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "MAIN_PHOTO")
 public class QMainPhoto {
 
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private long id;
 
     @SerializedName("author")
@@ -39,6 +39,21 @@ public class QMainPhoto {
     private int height;
 
     public QMainPhoto() {
+    }
+
+    public QMainPhoto(long id, String author, String source, String title, String url, int width, int height) {
+        this.id = id;
+        this.author = author;
+        this.source = source;
+        this.title = title;
+        this.url = url;
+        this.width = width;
+        this.height = height;
+    }
+
+    public QMainPhoto getNew()
+    {
+        return new QMainPhoto(id,author,source, title, url, width,height);
     }
 
     public long getId() {

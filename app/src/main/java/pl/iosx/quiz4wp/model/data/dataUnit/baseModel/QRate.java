@@ -34,6 +34,17 @@ public class QRate {
     public QRate() {
     }
 
+    public QRate(int from, int to, String content) {
+        this.from = from;
+        this.to = to;
+        this.content = content;
+    }
+
+    public QRate getNew()
+    {
+        return new QRate(from, to, content);
+    }
+
     public long getId() {
         return id;
     }

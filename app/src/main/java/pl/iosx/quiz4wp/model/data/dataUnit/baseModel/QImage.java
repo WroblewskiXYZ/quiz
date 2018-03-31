@@ -11,30 +11,32 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "QUESTION_IMAGE")
 public class QImage {
 
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private long id;
 
     @SerializedName("author")
-    @DatabaseField (columnName = "AUTHOR")
+    @DatabaseField(columnName = "AUTHOR")
     private String author;
 
     @SerializedName("source")
-    @DatabaseField (columnName = "SOURCE")
+    @DatabaseField(columnName = "SOURCE")
     private String source;
 
     @SerializedName("url")
-    @DatabaseField (columnName = "URL")
+    @DatabaseField(columnName = "URL")
     private String url;
 
-    @SerializedName("width")
-    @DatabaseField (columnName = "WIDTH")
-    private String width;
-
-    @SerializedName("height")
-    @DatabaseField (columnName = "HEIGHT")
-    private String height;
-
     public QImage() {
+    }
+
+    public QImage(String author, String source, String url) {
+        this.author = author;
+        this.source = source;
+        this.url = url;
+    }
+
+    public QImage getNew() {
+        return new QImage(author, source, url);
     }
 
     public long getId() {
@@ -68,20 +70,5 @@ public class QImage {
     public void setUrl(String url) {
         this.url = url;
     }
-
-    public String getWidth() {
-        return width;
-    }
-
-    public void setWidth(String width) {
-        this.width = width;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
 }
+

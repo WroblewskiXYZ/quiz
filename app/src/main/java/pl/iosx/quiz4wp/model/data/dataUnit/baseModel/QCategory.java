@@ -35,6 +35,11 @@ public class QCategory implements Comparable<QCategory>{
         this.name = name;
     }
 
+    public QCategory getNew()
+    {
+        return new QCategory(id, name);
+    }
+
     public long getId() {
         return id;
     }

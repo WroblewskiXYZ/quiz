@@ -15,18 +15,35 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
  */
 
 @DatabaseTable(tableName = "QUESTION_ITEM")
-public class QQuestion {
+public class QQuestion implements Cloneable{
 
     @DatabaseField(generatedId = true)
     private long id;
 
-    @ForeignCollectionField
+    @ForeignCollectionField (eager = true)
     private ForeignCollection<QAnswer> answerForeignCollection;
+
+    public List<QAnswer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<QAnswer> answers) {
+        this.answers = answers;
+    }
+
+
+    public QImage getqImage() {
+        return qImage;
+    }
+
+    public void setqImage(QImage qImage) {
+        this.qImage = qImage;
+    }
 
     @SerializedName("answers")
     List<QAnswer> answers;
 
-    @DatabaseField(columnName = "QUIZ_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
+    @DatabaseField(columnName = "QUIZ_ID", canBeNull = false, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private QuizModel quiz;
 
     @SerializedName("image")
@@ -50,6 +67,28 @@ public class QQuestion {
     private int order;
 
     public QQuestion() {
+    }
+
+    public QQuestion(long id, ForeignCollection<QAnswer> answerForeignCollection, List<QAnswer> answers, QuizModel quiz, QImage qImage, String text, String answer, String type, int order) {
+        this.id = id;
+        this.answerForeignCollection = answerForeignCollection;
+        this.answers = answers;
+        this.quiz = quiz;
+        this.qImage = qImage;
+        this.text = text;
+        this.answer = answer;
+        this.type = type;
+        this.order = order;
+    }
+
+    public QQuestion getNew()
+    {
+        return new QQuestion(id,null,answers,null,null,text,answer,type,order);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public long getId() {

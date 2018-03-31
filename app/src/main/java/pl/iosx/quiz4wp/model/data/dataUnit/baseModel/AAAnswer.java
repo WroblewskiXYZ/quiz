@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
 
-@DatabaseTable(tableName = "ANSWER")
-public class QAnswer {
+@DatabaseTable(tableName = "ANSWERAA")
+public class AAAnswer {
 
     @DatabaseField(generatedId = true)
     private long id;
 
-    @DatabaseField(columnName = "QUESTION_ID", canBeNull = false, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private QQuestion question;
 
     @SerializedName("order")
     @DatabaseField (columnName = "PARAM_ORDER")
@@ -29,19 +29,8 @@ public class QAnswer {
     @DatabaseField (columnName = "IS_CORRECT")
     private int isCorrect;
 
-    public QAnswer() {
+    public AAAnswer() {
 
-    }
-
-    public QAnswer(int order, String text, int isCorrect) {
-        this.order = order;
-        this.text = text;
-        this.isCorrect = isCorrect;
-    }
-
-    public QAnswer getNew()
-    {
-        return new QAnswer(order,text,isCorrect);
     }
 
     public long getId() {
@@ -50,14 +39,6 @@ public class QAnswer {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public QQuestion getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(QQuestion question) {
-        this.question = question;
     }
 
     public int getOrder() {

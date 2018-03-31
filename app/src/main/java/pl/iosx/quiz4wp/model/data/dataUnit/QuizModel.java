@@ -66,7 +66,13 @@ public class QuizModel {
     @DatabaseField(columnName = "DOWNLOAD_STATUS")
     private boolean isDownloaded;
 
-    @DatabaseField(columnName = "DOWNLOAD_STATUS")
+    public ForeignCollection<QRate> getRateForeignCollection() {
+        return rateForeignCollection;
+    }
+
+    public void setRateForeignCollection(ForeignCollection<QRate> rateForeignCollection) {
+        this.rateForeignCollection = rateForeignCollection;
+    }
 
     @ForeignCollectionField
     private ForeignCollection<QRate> rateForeignCollection;
@@ -99,6 +105,11 @@ public class QuizModel {
         this.userBattleDone = userBattleDone;
     }
 
+    public QuizModel getNew()
+    {
+        return new QuizModel(id,questionsSize,null,created,title,type,content,null,isBattle,null,avgResult,resultCount,userBattleDone);
+    }
+
     public void update(ApiQuizItem item)
     {
         this.id = item.getId();
@@ -118,7 +129,6 @@ public class QuizModel {
         this.rates = null;
 
         this.isDownloaded = false;
-
     }
 
     public void update(ApiQuizContent content)
@@ -131,10 +141,12 @@ public class QuizModel {
         this.content = content.getContent();
         this.mainPhoto = content.getMainPhoto();
 
+        //this.category = content.getCategory();
         this.isBattle = content.isBattle();
         this.avgResult = content.getAvgResult();
         this.resultCount = content.getResultCount();
         this.userBattleDone = content.isUserBattleDone();
+
         this.rates = content.getRates();
 
         if(questions!=null)
