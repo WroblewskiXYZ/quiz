@@ -118,34 +118,7 @@ public class DataBaseQuizModelTest {
     public void shouldAddQuizTest() throws SQLException, IOException, CloneNotSupportedException {
 
         DbManager dbManager = new DbManager(InstrumentationRegistry.getTargetContext());
-
-        ConnectionSource connectionSource = dbManager.getConnectionSource();
-        TableUtils.dropTable(connectionSource, QuizModel.class,true);
-        TableUtils.dropTable(connectionSource, QCategory.class,true);
-        TableUtils.dropTable(connectionSource, QQuestion.class,true);
-        TableUtils.dropTable(connectionSource, QImage.class,true);
-        TableUtils.dropTable(connectionSource, QMainPhoto.class,true);
-        TableUtils.dropTable(connectionSource, QRate.class,true);
-        TableUtils.dropTable(connectionSource, QAnswer.class,true);
-        TableUtils.dropTable(connectionSource, AAAnswer.class,true);
-
-        TableUtils.createTableIfNotExists(connectionSource, QuizModel.class);
-        TableUtils.createTableIfNotExists(connectionSource, QCategory.class);
-        TableUtils.createTableIfNotExists(connectionSource, QQuestion.class);
-        TableUtils.createTableIfNotExists(connectionSource, QImage.class);
-        TableUtils.createTableIfNotExists(connectionSource, QMainPhoto.class);
-        TableUtils.createTableIfNotExists(connectionSource, QRate.class);
-        TableUtils.createTableIfNotExists(connectionSource, QAnswer.class);
-        TableUtils.createTableIfNotExists(connectionSource, AAAnswer.class);
-
-        Dao<QuizModel,Long> daoQuiz = DaoManager.createDao(connectionSource,QuizModel.class);
-        Dao<QCategory,Long> daoCategory = DaoManager.createDao(connectionSource,QCategory.class);
-        Dao<QQuestion,Long> daoQuestions = DaoManager.createDao(connectionSource,QQuestion.class);
-        Dao<QImage,Long> daoQImages = DaoManager.createDao(connectionSource,QImage.class);
-        Dao<QMainPhoto,Long> daoMainPhoto = DaoManager.createDao(connectionSource,QMainPhoto.class);
-        Dao<QRate,Long> daoRate = DaoManager.createDao(connectionSource,QRate.class);
-        Dao<QAnswer,Long> daoAnswer = DaoManager.createDao(connectionSource,QAnswer.class);
-        Dao<AAAnswer,Long> daoAAnswer = DaoManager.createDao(connectionSource,AAAnswer.class);
+        dbManager.clearDataBase();
 
         Gson gson = new Gson();
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(quizItemResource);
@@ -182,52 +155,11 @@ public class DataBaseQuizModelTest {
         quizModels.add(0,quizModelExtended);
         quizModels.add(0,quizModelExtended2);
 
-        for(QuizModel quizModel : quizModels) {
+        dbManager.addQuizModels(quizModels);
 
-            QuizModel newQuizModel = quizModel.getNew(); //new instance, with null object fields
-            daoQuiz.createOrUpdate(newQuizModel);
-
-            QMainPhoto mainPhoto = quizModel.getMainPhoto();
-            daoMainPhoto.createOrUpdate(mainPhoto);
-            newQuizModel.setMainPhoto(mainPhoto);
-
-            QCategory category = quizModel.getCategory();
-            daoCategory.createOrUpdate(category);
-            newQuizModel.setCategory(category);
-            daoQuiz.update(newQuizModel);
-
-            if(quizModel.isDownloaded())
-            {
-                if(quizModel.getRates()!=null)
-                {
-                    daoQuiz.refresh(newQuizModel);
-                    for (QRate qRate : quizModel.getRates()) {
-                        daoRate.createOrUpdate(qRate);
-                        newQuizModel.getRateForeignCollection().add(qRate);
-                    }
-                }
-                if(quizModel.getQuestions()!=null)
-                {
-                    for (QQuestion qQuestion : quizModel.getQuestions()) {
-                       // qQuestion = qQuestion.getNew();
-                        newQuizModel.getQuestionForeignCollection().add(qQuestion);
-                        daoQuestions.refresh(qQuestion);
-                        if(qQuestion.getAnswers()!=null)
-                        {
-                            for (QAnswer answer : qQuestion.getAnswers()) {
-                                qQuestion.getAnswerForeignCollection().add(answer);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        List<QuizModel> baseModels =  daoQuiz.queryForAll();
+        List<QuizModel> newModels = dbManager.getAllQuizModels();
 
         System.out.println("done");
-
-        assertTrue(baseModels.size()!=0);
     }
 
 }
