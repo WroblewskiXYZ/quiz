@@ -9,7 +9,7 @@ import pl.iosx.quiz4wp.QuizApp;
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-@Component(modules = ApiServiceModule.class)
+@Component(modules = ApiManagerModule.class)
 public interface ApplicationComponent {
 
     @Component.Builder

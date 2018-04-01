@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.AAAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
@@ -39,7 +38,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     Dao<QMainPhoto,Long> daoMainPhoto;
     Dao<QRate,Long> daoRate;
     Dao<QAnswer,Long> daoAnswer;
-    Dao<AAAnswer,Long> daoAAnswer;
 
     ConnectionSource connectionSource;
 
@@ -78,7 +76,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             TableUtils.dropTable(connectionSource, QMainPhoto.class,true);
             TableUtils.dropTable(connectionSource, QRate.class,true);
             TableUtils.dropTable(connectionSource, QAnswer.class,true);
-            TableUtils.dropTable(connectionSource, AAAnswer.class,true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +91,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             TableUtils.createTableIfNotExists(connectionSource, QMainPhoto.class);
             TableUtils.createTableIfNotExists(connectionSource, QRate.class);
             TableUtils.createTableIfNotExists(connectionSource, QAnswer.class);
-            TableUtils.createTableIfNotExists(connectionSource, AAAnswer.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +106,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             daoMainPhoto = DaoManager.createDao(connectionSource,QMainPhoto.class);
             daoRate = DaoManager.createDao(connectionSource,QRate.class);
             daoAnswer = DaoManager.createDao(connectionSource,QAnswer.class);
-            daoAAnswer = DaoManager.createDao(connectionSource,AAAnswer.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -6,12 +6,6 @@ import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.dao.LazyForeignCollection;
-import com.j256.ormlite.support.ConnectionSource;
-import com.j256.ormlite.table.TableUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,24 +15,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizItem;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.AAAnswer;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QMainPhoto;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QRate;
 import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 
 import static org.junit.Assert.assertEquals;

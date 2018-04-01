@@ -2,10 +2,15 @@ package pl.iosx.quiz4wp.model.services.ApiManager;
 
 import android.content.Context;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.inject.Singleton;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
+import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizItem;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-@Singleton
-public class APIService {
+
+public class ApiService {
 
     static final String BASE_URL = "http://quiz.o2.pl/";
 
@@ -25,13 +30,39 @@ public class APIService {
     IQuizResponseApiService QuizResponseApiService;
     Context context;
 
-    public APIService(Context context)
+    public ApiService(Context context)
     {
         this.context = context;
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    public List<ApiQuizItem> getListResponse()
+    {
+        QuizResponseApiService =  retrofit.create(IQuizResponseApiService.class);
+        try {
+            Response<ApiQuizListResponse> responseResponse = QuizResponseApiService.getQuizList().execute();
+            return responseResponse.body().getApiQuizItemItems();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ApiQuizContent getQuizContent(long id)
+    {
+        QuizResponseApiService =  retrofit.create(IQuizResponseApiService.class);
+        try {
+            Response<ApiQuizContent> response = QuizResponseApiService.getQuizContent(Long.toString(id)).execute();
+            return response.body();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void getSimpleQuizResponse(final ISimpleResponseListener<ApiQuizListResponse> responseListener)
@@ -61,7 +92,7 @@ public class APIService {
     }
 
 
-    public void getQuizResponse(final IResponseListener<ApiQuizListResponse> responseListener)
+    public void getQuizResponseAsync(final IResponseListener<ApiQuizListResponse> responseListener)
     {
         try
         {
