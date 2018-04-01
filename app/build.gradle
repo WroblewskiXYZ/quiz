@@ -41,4 +41,6 @@ dependencies {
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.15.1'
    // compile group: 'com.google.guava', name: 'guava', version: 'r09'
     implementation 'com.google.guava:guava:23.3-android'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
 }

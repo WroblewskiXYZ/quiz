@@ -1,20 +1,22 @@
 package pl.iosx.quiz4wp;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import java.util.List;
+import android.view.View;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
-import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
-import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManagerModules;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Inject
-    ApiManager apiManager;
+    ContentManager contentManager;
+    TextView tvHello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +24,63 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         QuizApp.getApp().getApplicationComponent().inject(this);
 
-        apiManager.getAllEmptyQuizModelsAsync(new ApiManager.ApiResponseListener() {
+        tvHello = (TextView)findViewById(R.id.tvHello);
+        tvHello.setOnClickListener(this);
+    }
+
+    int counter= 0;
+    public void asc()
+    {
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void,Void,Void> newTask = new AsyncTask<Void, Void, Void>() {
             @Override
-            public void onReceived(List<QuizModel> models) {
-                Toast.makeText(getApplicationContext(),"download", Toast.LENGTH_LONG);
+            protected Void doInBackground(Void... voids) {
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
             }
 
             @Override
-            public void onFailure() {
-                Toast.makeText(getApplicationContext(),"failure", Toast.LENGTH_LONG);
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                tvHello.setText("counter: " + counter++);
             }
-        });
+
+        };
+        newTask.execute();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(!contentManager.isLocked())
+        contentManager.checkUpdate(new ContentManagerModules.CheckBaseListener() {
+            @Override
+            public void onDownloading(int progress) {
+                tvHello.setText("Downloading: " + progress);
+            }
+
+            @Override
+            public void onReading(int progress) {
+                tvHello.setText("Reading: " + progress);
+            }
+
+            @Override
+            public void onSaving(int progress) {
+                tvHello.setText("Saving: " + progress);
+            }
+
+            @Override
+            public void onContentReady(boolean download) {
+                tvHello.setText("Content ready");
+            }
+
+            @Override
+            public void onUnableToProvideContent() {
+                tvHello.setText("Unable to provide content");
+            }
+        }, false);
     }
 }

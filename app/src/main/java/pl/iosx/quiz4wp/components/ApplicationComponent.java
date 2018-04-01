@@ -4,12 +4,13 @@ import dagger.BindsInstance;
 import dagger.Component;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.QuizApp;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-@Component(modules = ApiManagerModule.class)
+@Component(modules = ContentManagerModule.class)
 public interface ApplicationComponent {
 
     @Component.Builder
@@ -22,5 +23,4 @@ public interface ApplicationComponent {
 
     void inject(QuizApp quizApp);
     void inject(MainActivity activity);
-
 }

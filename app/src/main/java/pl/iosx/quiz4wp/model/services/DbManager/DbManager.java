@@ -6,7 +6,11 @@ import android.os.AsyncTask;
 
 import com.j256.ormlite.support.ConnectionSource;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 
@@ -21,31 +25,71 @@ public class DbManager {
     ConnectionSource connectionSource;
     OperationListener operationListener;
 
+    AsyncTask<Void,Void,Void> clearAsyncTask;
+    AsyncTask<List<QuizModel>,Integer,Void> addItemsAsyncTask;
+    private AsyncTask<Void, Void, List<QuizModel>> getListAsyncTask;
+
     public DbManager(Context context)
     {
         this.context = context;
         this.myDatabaseHelper = new MyDatabaseHelper(context);
     }
 
-    public void cancel()
+    public void cancelRunningTasks()
     {
-        if(clearDataBasetask.getStatus()== AsyncTask.Status.RUNNING)
+        if(clearAsyncTask!=null && clearAsyncTask.getStatus()== AsyncTask.Status.RUNNING)
         {
-            clearDataBasetask.cancel(true);
+            clearAsyncTask.cancel(true);
+            reportCancel();
+        }
+        if(addItemsAsyncTask!=null && addItemsAsyncTask.getStatus()== AsyncTask.Status.RUNNING)
+        {
+            addItemsAsyncTask.cancel(true);
+            reportCancel();
+        }
+        if(getListAsyncTask!=null && getListAsyncTask.getStatus()== AsyncTask.Status.RUNNING)
+        {
+            getListAsyncTask.cancel(true);
             reportCancel();
         }
     }
 
     public void clearDataBase()
     {
-        clearDataBasetask.execute();
+        myDatabaseHelper.clearDataBase();
     }
 
     public void clearDataBaseAsync(OperationListener listener)
     {
-        cancel();
+        cancelRunningTasks();
         operationListener = listener;
-        clearDataBasetask.execute();
+        @SuppressLint("StaticFieldLeak")
+        AsyncTask<Void,Void,Void> clearDataBaseTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                clearDataBase();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                reportFinish();
+            }
+
+            @Override
+            protected void onCancelled(Void aVoid) {
+                super.onCancelled(aVoid);
+                reportCancel();
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                reportCancel();
+            }
+        };
+        clearDataBaseTask.execute();
     }
 
     public List<QuizModel> getAllQuizModels()
@@ -53,15 +97,49 @@ public class DbManager {
         return myDatabaseHelper.querryForAllQuizModels();
     }
 
+    ReadDataBaseListener readDataBaseListener;
+    public void getAllQuizModelsAsync(ReadDataBaseListener operationListener)
+    {
+        cancelRunningTasks();
+        this.operationListener = operationListener;
+        this.readDataBaseListener = operationListener;
+        getListAsyncTask = null;
+
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void,Void,List<QuizModel>> listAsyncTask = new AsyncTask<Void, Void, List<QuizModel>>() {
+            @Override
+            protected List<QuizModel> doInBackground(Void... voids) {
+                return myDatabaseHelper.querryForAllQuizModels();
+            }
+
+            @Override
+            protected void onPostExecute(List<QuizModel> models) {
+                super.onPostExecute(models);
+                if(readDataBaseListener!=null) readDataBaseListener.onRead(models);
+            }
+
+            @Override
+            protected void onCancelled(List<QuizModel> models) {
+                super.onCancelled(models);
+                reportCancel();
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                reportCancel();
+            }
+        };
+        this.getListAsyncTask = listAsyncTask;
+        listAsyncTask.execute();
+    }
+
     public void addQuizModel(QuizModel quizModel)
     {
-        cancel();
         myDatabaseHelper.createOrUpdate(quizModel);
     }
 
     public void addQuizModels(List<QuizModel> quizModels)
     {
-        cancel();
         for(QuizModel quizModel : quizModels)
         {
             myDatabaseHelper.createOrUpdate(quizModel);
@@ -70,16 +148,66 @@ public class DbManager {
 
     public void addQuizModelAsync(QuizModel quizModel, OperationListener listener)
     {
-        cancel();
-        operationListener = listener;
-        addAllItemsTask.execute(quizModel);
+        List<QuizModel> quizModels = new ArrayList<>();
+        addQuizModelsAsync(quizModels,listener);
     }
 
     public void addQuizModelsAsync(List<QuizModel> quizModels, OperationListener listener)
     {
-        cancel();
+        cancelRunningTasks();
         operationListener = listener;
-        addAllItemsTask.execute((QuizModel[])quizModels.toArray());
+        @SuppressLint("StaticFieldLeak")
+        AsyncTask<List<QuizModel>,Integer,Void> addAllItemsTask = new AsyncTask<List<QuizModel>, Integer, Void>() {
+            @Override
+            protected Void doInBackground(List<QuizModel>... quizModels) {
+                if(quizModels==null && quizModels.length==0) return null;
+
+                List<QuizModel> models = quizModels[0];
+
+                for(int i=0; i<models.size();i++)
+                {
+                    QuizModel quizModel = models.get(i);
+                    if(quizModel!=null)
+                    {
+                        myDatabaseHelper.createOrUpdate(quizModel);
+                    }
+                    publishProgress((i*100)/models.size());
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                reportFinish();
+            }
+
+            @Override
+            protected void onProgressUpdate(Integer... values) {
+                super.onProgressUpdate(values);
+                if(values!=null)
+                    reportProgressChange(values[0]);
+            }
+
+            @Override
+            protected void onCancelled(Void aVoid) {
+                super.onCancelled(aVoid);
+                reportCancel();
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                reportCancel();
+            }
+        };
+        addItemsAsyncTask = addAllItemsTask;
+        addAllItemsTask.execute(quizModels);
     }
 
     private void reportCancel()
@@ -106,80 +234,9 @@ public class DbManager {
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
-    AsyncTask<Void,Void,Void> clearDataBasetask = new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            myDatabaseHelper.clearDataBase();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            reportFinish();
-        }
-
-        @Override
-        protected void onCancelled(Void aVoid) {
-            super.onCancelled(aVoid);
-            reportCancel();
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            reportCancel();
-        }
-    };
-
-    @SuppressLint("StaticFieldLeak")
-    AsyncTask<QuizModel,Integer,Void> addAllItemsTask = new AsyncTask<QuizModel, Integer, Void>() {
-        @Override
-        protected Void doInBackground(QuizModel... quizModels) {
-            if(quizModels==null) return null;
-            for(int i=0; i<quizModels.length;i++)
-            {
-               QuizModel quizModel = quizModels[i];
-               if(quizModel!=null)
-               {
-                   myDatabaseHelper.createOrUpdate(quizModel);
-               }
-               publishProgress(quizModels.length/i);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            reportFinish();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-            if(values!=null)
-            reportProgressChange(values[0]);
-        }
-
-        @Override
-        protected void onCancelled(Void aVoid) {
-            super.onCancelled(aVoid);
-            reportCancel();
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            reportCancel();
-        }
-    };
+    public interface ReadDataBaseListener extends OperationListener{
+        void onRead(List<QuizModel> models);
+    }
 
     public interface OperationListener
     {

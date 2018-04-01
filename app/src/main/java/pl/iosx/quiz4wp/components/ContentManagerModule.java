@@ -3,18 +3,18 @@ package pl.iosx.quiz4wp.components;
 import dagger.Module;
 import dagger.Provides;
 import pl.iosx.quiz4wp.QuizApp;
-import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
 @Module
-public class ApiManagerModule {
+public class ContentManagerModule {
 
     @Provides
-    ApiManager provideApiService(QuizApp app)
+    ContentManager provideApiService(QuizApp app)
     {
-        return new ApiManager(app);
+        return new ContentManager(app);
     }
 }

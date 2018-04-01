@@ -4,20 +4,15 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
-import pl.iosx.quiz4wp.components.ApiManagerModule;
 import pl.iosx.quiz4wp.components.ApplicationComponent;
 import pl.iosx.quiz4wp.components.DaggerApplicationComponent;
 import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
-import pl.iosx.quiz4wp.model.services.ApiManager.ApiService;
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
 public class QuizApp extends Application {
-
-    @Inject
-    ApiManager apiManager;
 
     private static QuizApp quizApp;
     private ApplicationComponent applicationComponent;

@@ -13,6 +13,8 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 import java.util.List;
 
+import java.util.concurrent.Callable;
+import io.reactivex.Observable;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
@@ -122,6 +124,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return models;
     }
 
+
     public boolean createOrUpdate(QuizModel quizModel)
     {
         try
@@ -190,6 +193,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private void createOrUpdate(QQuestion qQuestion, QAnswer answer) throws SQLException {
         //daoAnswer.createOrUpdate(answer);
         qQuestion.getAnswerForeignCollection().add(answer);
+    }
+
+    Observable<Boolean> insert(final QuizModel quizModel)
+    {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return createOrUpdate(quizModel);
+            }
+        });
     }
 
 }
