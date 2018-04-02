@@ -1,6 +1,8 @@
 package pl.iosx.quiz4wp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Inject
     ContentManager contentManager;
     TextView tvHello;
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

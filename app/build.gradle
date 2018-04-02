@@ -43,4 +43,6 @@ dependencies {
     implementation 'com.google.guava:guava:23.3-android'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
+    implementation group: 'com.jakewharton', name: 'butterknife-gradle-plugin', version: '8.2.0'
+
 }
