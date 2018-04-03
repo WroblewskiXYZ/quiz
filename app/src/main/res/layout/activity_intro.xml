@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gd_intro"
+    tools:context="pl.iosx.quiz4wp.view.intro.IntroActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+
+    <FrameLayout
+        android:id="@+id/fullscreen_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:text="@string/app_title"
+                android:textColor="#cfebf5"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tv_title"
+                android:gravity="center_horizontal"
+                android:keepScreenOn="true"
+                android:text="@string/app_subtitle"
+                android:textColor="#cfebf5"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_below="@id/tv_title"
+                android:keepScreenOn="true"
+                android:text="@string/app_author"
+                android:textColor="#cfebf5"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_status_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/pbProgress"
+                android:gravity="top"
+                android:layout_centerHorizontal="true"
+                android:keepScreenOn="true"
+                android:text="@string/welcome_message"
+                android:textColor="@color/intro_bottom"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:lines="1"/>
+
+            <ProgressBar
+                android:id="@+id/pbProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:progress="25"
+                android:paddingBottom="@dimen/btn_intro_height"/>
+
+
+            <Button
+                android:id="@+id/btn_retry"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="@dimen/btn_intro_width"
+                android:layout_height="@dimen/btn_intro_height"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:text="@string/btn_retry"
+                android:layout_above="@+id/tv_status_message"
+                android:layout_centerHorizontal="true"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+
+
+
+    </FrameLayout>
+
+</FrameLayout>
+
+
+

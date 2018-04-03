@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.view;
+package pl.iosx.quiz4wp.view.base;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -8,15 +8,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
 import pl.iosx.quiz4wp.MainActivity;
-import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.utilities.Utilities;
 
 /**
@@ -24,8 +22,7 @@ import pl.iosx.quiz4wp.utilities.Utilities;
  */
 
 
-public abstract class BaseActivity extends AppCompatActivity
-        implements MvpView, BaseFragment.Callback {
+public abstract class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback {
 
     private ProgressDialog progressDialog;
 
@@ -94,6 +91,11 @@ public abstract class BaseActivity extends AppCompatActivity
     public void openStartActivity() {
         startActivity(MainActivity.getIntent(this));
         finish();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override

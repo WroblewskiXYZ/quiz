@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorDialog">#2a2a2a</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="intro_bottom">#4fc1ce</color>
+    <color name="themeColorButtonBackground">#20BBBBBB</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

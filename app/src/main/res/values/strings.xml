@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Quiz4WP</string>
+
+    <string name="title_activity_intro">IntroActivity</string>
+    <string name="welcome_message">Welcome</string>
+    <string name="app_title">QUIZ</string>
+    <string name="app_subtitle">Wirtualna Polska</string>
+    <string name="app_author">Łukasz Wróblewski</string>
+    <string name="btn_retry">RETRY</string>
+    <string name="downloading_status">Downloading (%d %%)</string>
+    <string name="reading_status" >Reading (%d %%)</string>
+    <string name="saving_status" >Saving (%d %%)</string>
+    <string name="content_ready">Ready</string>
+    <string name="unable_to_download_content">Unable to download content</string>
+
 </resources>

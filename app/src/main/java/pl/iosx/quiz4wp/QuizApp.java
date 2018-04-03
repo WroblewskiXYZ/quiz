@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import pl.iosx.quiz4wp.components.ApplicationComponent;
 import pl.iosx.quiz4wp.components.DaggerApplicationComponent;
-import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
+
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
