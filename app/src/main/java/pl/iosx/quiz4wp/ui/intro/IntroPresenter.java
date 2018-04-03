@@ -1,11 +1,11 @@
-package pl.iosx.quiz4wp.view.intro;
+package pl.iosx.quiz4wp.ui.intro;
 
 import android.content.Context;
 import android.os.Handler;
 
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.services.ContentManager.ContentManagerModules;
-import pl.iosx.quiz4wp.view.base.BasePresenter;
+import pl.iosx.quiz4wp.ui.base.BasePresenter;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.

@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.view.base;
+package pl.iosx.quiz4wp.ui.base;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.utilities.Utilities;
 

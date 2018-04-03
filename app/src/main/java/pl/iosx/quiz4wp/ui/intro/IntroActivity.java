@@ -1,10 +1,9 @@
-package pl.iosx.quiz4wp.view.intro;
+package pl.iosx.quiz4wp.ui.intro;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,7 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.R;
-import pl.iosx.quiz4wp.view.base.BaseActivity;
+import pl.iosx.quiz4wp.ui.base.BaseActivity;
 
 public class IntroActivity extends BaseActivity implements IntroMvpView {
 

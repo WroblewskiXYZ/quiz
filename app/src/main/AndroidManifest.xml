@@ -15,10 +15,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".view.intro.IntroActivity"
+            android:name=".ui.intro.IntroActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_intro"
             android:theme="@style/FullscreenTheme">
@@ -28,6 +27,7 @@
                 <name android:name="android.intent.name.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.category.CategoryActivity"></activity>
     </application>
 
 </manifest>

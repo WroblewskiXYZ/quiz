@@ -1,6 +1,6 @@
 package pl.iosx.quiz4wp;
 
-import pl.iosx.quiz4wp.view.base.MvpView;
+import pl.iosx.quiz4wp.ui.base.MvpView;
 
 /**
  * Created by lukaszwroblewski on 02.04.2018.

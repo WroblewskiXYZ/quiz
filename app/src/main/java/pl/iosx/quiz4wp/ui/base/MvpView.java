@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.view.base;
+package pl.iosx.quiz4wp.ui.base;
 
 import android.support.annotation.StringRes;
 
