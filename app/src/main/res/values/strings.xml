@@ -12,5 +12,7 @@
     <string name="saving_status">Saving (%d %%)</string>
     <string name="content_ready">Ready</string>
     <string name="unable_to_download_content">Unable to download content</string>
+    <string name="no_available_content">No available content</string>
+    <string name="go_back">Go back</string>
 
 </resources>
