@@ -5,9 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.j256.ormlite.android.AndroidConnectionSource;
+import com.j256.ormlite.android.AndroidDatabaseConnection;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.support.DatabaseConnection;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
@@ -53,10 +55,63 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return connectionSource;
     }
 
+   // @Override
+   // public void onCreate(SQLiteDatabase database) {
+   //     ConnectionSource cs = getConnectionSource();
+   // /*
+   //      * The method is called by Android database helper's get-database calls when Android detects that we need to
+   //      * create or update the database. So we have to use the database argument and save a connection to it on the
+   //      * AndroidConnectionSource, otherwise it will go recursive if the subclass calls getConnectionSource().
+   //      */
+   //     DatabaseConnection conn = cs.getSpecialConnection(null);
+   //     boolean clearSpecial = false;
+   //     if (conn == null) {
+   //         conn = new AndroidDatabaseConnection(database, true, true);
+   //         try {
+   //             cs.saveSpecialConnection(conn);
+   //             clearSpecial = true;
+   //         } catch (SQLException e) {
+   //             throw new IllegalStateException("Could not save special connection", e);
+   //         }
+   //     }
+   //     try {
+   //         this.on
+   //     } finally {
+   //         if (clearSpecial) {
+   //             cs.clearSpecialConnection(conn);
+   //         }
+   //     }
+   //     dropAllTabs();
+   //     createTabsIfNotExist();
+   // }
+
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    public void onCreate(SQLiteDatabase db) {
+        isCreating = true;
+        currentDB = db;
         dropAllTabs();
         createTabsIfNotExist();
+        isCreating = false;
+        currentDB = null;
+    }
+
+    boolean isCreating = false;
+    SQLiteDatabase currentDB = null;
+
+    @Override
+    public SQLiteDatabase getWritableDatabase() {
+        if(isCreating && currentDB != null){
+            return currentDB;
+        }
+        return super.getWritableDatabase();
+    }
+
+    @Override
+    public SQLiteDatabase getReadableDatabase() {
+        if(isCreating && currentDB != null){
+            return currentDB;
+        }
+        return super.getReadableDatabase();
     }
 
     @Override
@@ -66,7 +121,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public void clearDataBase()
     {
-        this.onCreate(getWritableDatabase());
+        //this.onCreate(getWritableDatabase());
     }
 
     private void dropAllTabs() {
@@ -113,14 +168,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<QuizModel> querryForAllQuizModels()
+    public List<QuizModel> queryForAllQuizModels()
     {
         List<QuizModel> models = null;
-        try {
-           models =  daoQuiz.queryForAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+       try {
+          models =  daoQuiz.queryForAll();
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
         return models;
     }
 

@@ -9,7 +9,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
@@ -17,7 +16,7 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 /**
  * Created by lukaszwroblewski on 29.03.2018.
  */
-
+@Singleton
 public class DbManager {
 
     private Context context;
@@ -26,8 +25,9 @@ public class DbManager {
     OperationListener operationListener;
 
     AsyncTask<Void,Void,Void> clearAsyncTask;
-    AsyncTask<List<QuizModel>,Integer,Void> addItemsAsyncTask;
+    AsyncTask<List<QuizModel>, Integer, List<QuizModel>> addItemsAsyncTask;
     private AsyncTask<Void, Void, List<QuizModel>> getListAsyncTask;
+
 
     public DbManager(Context context)
     {
@@ -94,7 +94,7 @@ public class DbManager {
 
     public List<QuizModel> getAllQuizModels()
     {
-        return myDatabaseHelper.querryForAllQuizModels();
+        return myDatabaseHelper.queryForAllQuizModels();
     }
 
     ReadDataBaseListener readDataBaseListener;
@@ -108,7 +108,7 @@ public class DbManager {
         @SuppressLint("StaticFieldLeak") AsyncTask<Void,Void,List<QuizModel>> listAsyncTask = new AsyncTask<Void, Void, List<QuizModel>>() {
             @Override
             protected List<QuizModel> doInBackground(Void... voids) {
-                return myDatabaseHelper.querryForAllQuizModels();
+                return myDatabaseHelper.queryForAllQuizModels();
             }
 
             @Override
@@ -157,9 +157,9 @@ public class DbManager {
         cancelRunningTasks();
         operationListener = listener;
         @SuppressLint("StaticFieldLeak")
-        AsyncTask<List<QuizModel>,Integer,Void> addAllItemsTask = new AsyncTask<List<QuizModel>, Integer, Void>() {
+        AsyncTask<List<QuizModel>,Integer,List<QuizModel>> addAllItemsTask = new AsyncTask<List<QuizModel>, Integer, List<QuizModel>>() {
             @Override
-            protected Void doInBackground(List<QuizModel>... quizModels) {
+            protected List<QuizModel> doInBackground(List<QuizModel>... quizModels) {
                 if(quizModels==null && quizModels.length==0) return null;
 
                 List<QuizModel> models = quizModels[0];
@@ -173,7 +173,7 @@ public class DbManager {
                     }
                     publishProgress((i*100)/models.size());
                 }
-                return null;
+                return models;
             }
 
             @Override
@@ -182,8 +182,8 @@ public class DbManager {
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            protected void onPostExecute(List<QuizModel> models) {
+                super.onPostExecute(models);
                 reportFinish();
             }
 
@@ -195,8 +195,8 @@ public class DbManager {
             }
 
             @Override
-            protected void onCancelled(Void aVoid) {
-                super.onCancelled(aVoid);
+            protected void onCancelled(List<QuizModel> models) {
+                super.onCancelled(models);
                 reportCancel();
             }
 

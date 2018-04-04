@@ -2,7 +2,11 @@ package pl.iosx.quiz4wp.ui.category;
 
 import android.content.Context;
 
+import javax.inject.Inject;
+
 import pl.iosx.quiz4wp.MvpPresenter;
+import pl.iosx.quiz4wp.QuizApp;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 
 /**
@@ -11,8 +15,10 @@ import pl.iosx.quiz4wp.ui.base.BasePresenter;
 
 public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<V> implements CategoryMvpPresenter<V>{
 
+
     public CategoryPresenter(Context context) {
         super(context);
+
     }
 
     @Override
@@ -43,5 +49,6 @@ public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<
     @Override
     protected void setUpView() {
         super.setUpView();
+
     }
 }

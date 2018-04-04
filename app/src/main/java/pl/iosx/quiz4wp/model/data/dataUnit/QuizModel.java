@@ -28,6 +28,12 @@ public class QuizModel {
     @DatabaseField (columnName = "QUESTION_SIZE")
     private int questionsSize;
 
+    @DatabaseField (columnName = "QUESTION_DONE")
+    private int questionsDone;
+
+    @DatabaseField (columnName = "QUESTION_POINTS")
+    private int questionsPoints;
+
     @ForeignCollectionField
     private ForeignCollection<QQuestion> questionForeignCollection;
 
@@ -282,5 +288,36 @@ public class QuizModel {
 
     public void setRates(List<QRate> rates) {
         this.rates = rates;
+    }
+
+    public int getQuestionsDone() {
+        return questionsDone;
+    }
+
+    public void setQuestionsDone(int questionsDone) {
+        this.questionsDone = questionsDone;
+    }
+
+    public int getQuestionsPoints() {
+        return questionsPoints;
+    }
+
+    public void setQuestionsPoints(int questionsPoints) {
+        this.questionsPoints = questionsPoints;
+    }
+
+    public boolean isDone()
+    {
+        return questionsSize>0 && questionsSize == questionsDone;
+    }
+
+    public int getPercentageProgress()
+    {
+        return (questionsDone*100)/questionsSize;
+    }
+
+    public int getPercentageScore()
+    {
+        return (questionsPoints*100)/questionsSize;
     }
 }

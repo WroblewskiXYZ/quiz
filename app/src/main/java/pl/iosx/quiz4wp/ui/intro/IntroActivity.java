@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.ui.base.BaseActivity;
+import pl.iosx.quiz4wp.ui.category.CategoryActivity;
 
 public class IntroActivity extends BaseActivity implements IntroMvpView {
 
@@ -59,9 +60,10 @@ public class IntroActivity extends BaseActivity implements IntroMvpView {
 
     @Override
     public void openMainActivity() {
-        Intent intent = MainActivity.getIntent(this);
+        Intent intent = CategoryActivity.getIntent(this);
         startActivity(intent);
         finish();
+
     }
 
     @Override

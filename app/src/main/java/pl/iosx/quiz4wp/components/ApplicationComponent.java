@@ -1,6 +1,7 @@
 package pl.iosx.quiz4wp.components;
 
-import dagger.BindsInstance;
+import javax.inject.Singleton;
+
 import dagger.Component;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.QuizApp;
@@ -9,17 +10,9 @@ import pl.iosx.quiz4wp.ui.base.Presenter;
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
-
-@Component(modules = ContentManagerModule.class)
+@Component(modules = ContextModule.class)
+@Singleton
 public interface ApplicationComponent{
-
-    @Component.Builder
-    interface Builder
-    {
-        @BindsInstance
-        Builder application(QuizApp quizApp);
-        ApplicationComponent build();
-    }
 
     void inject(QuizApp quizApp);
     void inject(MainActivity activity);

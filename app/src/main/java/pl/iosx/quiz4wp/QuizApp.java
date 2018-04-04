@@ -5,7 +5,9 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import pl.iosx.quiz4wp.components.ApplicationComponent;
+import pl.iosx.quiz4wp.components.ContextModule;
 import pl.iosx.quiz4wp.components.DaggerApplicationComponent;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 
 
 /**
@@ -13,6 +15,9 @@ import pl.iosx.quiz4wp.components.DaggerApplicationComponent;
  */
 
 public class QuizApp extends Application {
+
+    @Inject
+    ContentManager contentManager;
 
     private static QuizApp quizApp;
     private ApplicationComponent applicationComponent;
@@ -24,8 +29,9 @@ public class QuizApp extends Application {
 
         applicationComponent = DaggerApplicationComponent
                 .builder()
-                .application(this)
+                .contextModule(new ContextModule(this))
                 .build();
+
         applicationComponent.inject(this);
     }
 

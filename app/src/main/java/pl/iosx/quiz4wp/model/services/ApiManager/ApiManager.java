@@ -20,7 +20,7 @@ import retrofit2.Response;
 /**
  * Created by lukaszwroblewski on 01.04.2018.
  */
-
+@Singleton
 public class ApiManager {
 
     ApiService apiService;

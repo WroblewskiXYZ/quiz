@@ -7,4 +7,5 @@ import pl.iosx.quiz4wp.MvpPresenter;
  */
 
 public interface FilteredQuizListMvpPresenter<V extends FilteredQuizListMvpView> extends MvpPresenter<V> {
+    void onViewPrepared();
 }

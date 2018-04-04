@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
 
     public void setQuizModelList(List<QuizModel> quizModelList) {
         this.quizModelList = quizModelList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -54,6 +56,12 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
                     .inflate(R.layout.viewholder_quizmodel,parent,false);
             return new QuizViewHolder(quizModelView);
         }
+        else
+        {
+            View quizModelView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.viewholder_empty,parent,false);
+            return new QuizViewHolder(quizModelView);
+        }
     }
 
     @Override
@@ -62,14 +70,60 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (quizModelList != null && quizModelList.size() > 0) {
+            return VIEWTYPE_QUIZMODEL;
+        } else {
+            return VIEWTYPE_NONE;
+        }
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    @Override
     public int getItemCount() {
-        return 0;
+        if (quizModelList != null && quizModelList.size() > 0) {
+            return quizModelList.size();
+        } else {
+            return 1;
+        }
     }
 
     public interface AdapterCallback
     {
         void onRetryClicked();
         void onItemClicked(int position, long id);
+    }
+
+    class EmptyViewHolder extends BaseViewHolder
+    {
+        @BindView(R.id.btn_goback)
+        Button btnGoBack;
+
+
+        public EmptyViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(itemView);
+            btnGoBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(adapterCallback!=null) adapterCallback.onRetryClicked();
+                }
+            });
+        }
+
+        @Override
+        protected void clear() {
+
+        }
+
+        @Override
+        public void onBind(int position) {
+            super.onBind(position);
+        }
     }
 
     class QuizViewHolder extends BaseViewHolder
@@ -89,7 +143,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
 
         public QuizViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         @Override
@@ -103,6 +157,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
         @Override
         public void onBind(int position) {
             super.onBind(position);
+
 
             if(quizModelList!=null && quizModelList.size()>position)
             {
@@ -122,6 +177,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
 
                     tvTitle.setText(quizModel.getTitle());
                     tvContent.setText(quizModel.getContent());
+                    tvInfo.setText("Downloaded: " + quizModel.isDownloaded());
                 }
             }
         }

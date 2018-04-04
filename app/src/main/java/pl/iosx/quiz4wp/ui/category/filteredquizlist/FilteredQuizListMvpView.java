@@ -1,5 +1,8 @@
 package pl.iosx.quiz4wp.ui.category.filteredquizlist;
 
+import java.util.List;
+
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.base.MvpView;
 
 /**
@@ -7,4 +10,6 @@ import pl.iosx.quiz4wp.ui.base.MvpView;
  */
 
 public interface FilteredQuizListMvpView extends MvpView {
+
+    void onItemsUpdate(List<QuizModel> quizModels);
 }

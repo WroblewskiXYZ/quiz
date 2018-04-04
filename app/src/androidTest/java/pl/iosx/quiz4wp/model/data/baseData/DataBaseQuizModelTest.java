@@ -102,6 +102,8 @@ public class DataBaseQuizModelTest {
     public void shouldAddQuizTest() throws SQLException, IOException, CloneNotSupportedException {
 
         DbManager dbManager = new DbManager(InstrumentationRegistry.getTargetContext());
+        List<QuizModel> newModels = dbManager.getAllQuizModels();
+
         dbManager.clearDataBase();
 
         Gson gson = new Gson();
@@ -141,7 +143,7 @@ public class DataBaseQuizModelTest {
 
         dbManager.addQuizModels(quizModels);
 
-        List<QuizModel> newModels = dbManager.getAllQuizModels();
+        List<QuizModel> newModels2 = dbManager.getAllQuizModels();
 
         System.out.println("done");
     }

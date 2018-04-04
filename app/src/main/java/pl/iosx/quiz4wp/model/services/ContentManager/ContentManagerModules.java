@@ -110,8 +110,7 @@ public class ContentManagerModules {
         contentManager.dbManager.addQuizModelsAsync(modelsToSave, new DbManager.OperationListener() {
             @Override
             public void onFinish() {
-                checkBaseListener.onContentReady(true);
-                contentManager.setLocked(false);
+                UpdateAllContent(contentManager,checkBaseListener);
             }
 
             @Override
@@ -122,6 +121,33 @@ public class ContentManagerModules {
             @Override
             public void onProgressChange(int percent) {
                 checkBaseListener.onSaving(percent);
+            }
+        });
+    }
+
+    public static void UpdateAllContent(final ContentManager contentManager, final CheckBaseListener checkBaseListener)
+    {
+        contentManager.dbManager.getAllQuizModelsAsync(new DbManager.ReadDataBaseListener() {
+            @Override
+            public void onRead(List<QuizModel> models) {
+                contentManager.setQuizModels(models);
+                checkBaseListener.onContentReady(true);
+                contentManager.setLocked(false);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCanceled() {
+                    ReportFailure(contentManager,checkBaseListener);
+            }
+
+            @Override
+            public void onProgressChange(int percent) {
+                    checkBaseListener.onReading(percent);
             }
         });
     }

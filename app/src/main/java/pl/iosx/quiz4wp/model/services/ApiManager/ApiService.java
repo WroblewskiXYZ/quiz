@@ -5,12 +5,9 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Singleton;
-
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizItem;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
-import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

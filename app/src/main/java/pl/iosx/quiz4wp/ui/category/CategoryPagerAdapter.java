@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListFragment;
+
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
@@ -12,9 +14,12 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
 
     private int count;
 
+    Fragment fragmentAllQuizzes;
+
     public CategoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.count = 0;
+        fragmentAllQuizzes = FilteredQuizListFragment.newInstance();
+        this.count = 1;
     }
 
     @Override
@@ -22,7 +27,7 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return null;// FragmentAll.newInstance return all quiz
+                return fragmentAllQuizzes;
             case 1:
                 return null;// FragmentCategory1.newInstance return list of quiz of one category ;
             default:

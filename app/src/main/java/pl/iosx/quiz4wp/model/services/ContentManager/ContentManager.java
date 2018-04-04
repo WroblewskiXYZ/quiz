@@ -20,7 +20,7 @@ public class ContentManager {
 
     boolean isDownloaded = false;
     boolean isLocked = false;
-    private List<QuizModel> quizModels = new ArrayList<>();
+    private List<QuizModel> quizModels;
     protected ApiManager apiManager;
     protected DbManager dbManager;
 
@@ -38,7 +38,8 @@ public class ContentManager {
 
     protected void setQuizModels(List<QuizModel> quizModels) {
         this.quizModels = quizModels;
-        if(quizModels==null) quizModels = new ArrayList<>();
+        if(quizModels==null)
+            this.quizModels = new ArrayList<>();
     }
 
     public List<QuizModel> getQuizModels() {
