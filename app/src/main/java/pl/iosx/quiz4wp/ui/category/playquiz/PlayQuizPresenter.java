@@ -13,8 +13,7 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V>
-implements PlayQuizMvpPresenter<V>{
+public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>{
 
     public PlayQuizPresenter(Context context) {
         super(context);
@@ -51,9 +50,7 @@ implements PlayQuizMvpPresenter<V>{
     }
 
     @Override
-    public void onViewPrepared() {
-        List<QuizModel> models = contentManager.getQuizModels();
-        if(models!=null)
-            mvpView.onItemsUpdate(models);
+    public void onAnswerButtonClick(int answer) {
+
     }
 }

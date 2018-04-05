@@ -17,7 +17,7 @@ public class CategoryActivity extends BaseActivity {
     @BindView(R.id.vp_quiz)
     ViewPager viewPager;
 
-
+    CategoryMvpPresenter categoryMvpPresenter;
     CategoryPagerAdapter categoryPagerAdapter;
 
     public static Intent getIntent(Context context) {
@@ -30,12 +30,13 @@ public class CategoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
-        categoryPagerAdapter = new CategoryPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(categoryPagerAdapter);
+        setUp();
     }
 
     @Override
     protected void setUp() {
-
+        categoryPagerAdapter = new CategoryPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(categoryPagerAdapter);
+        categoryMvpPresenter.onAttach(this);
     }
 }

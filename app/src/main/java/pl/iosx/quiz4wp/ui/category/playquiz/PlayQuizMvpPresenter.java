@@ -8,5 +8,7 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
  */
 
 public interface PlayQuizMvpPresenter<V extends PlayQuizMvpView> extends MvpPresenter<V> {
-    void onViewPrepared();
+
+    void onAnswerButtonClick(int answer);
+
 }
