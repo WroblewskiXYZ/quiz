@@ -8,6 +8,9 @@ import pl.iosx.quiz4wp.MvpPresenter;
 import pl.iosx.quiz4wp.QuizApp;
 import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
+import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
@@ -15,10 +18,13 @@ import pl.iosx.quiz4wp.ui.base.BasePresenter;
 
 public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<V> implements CategoryMvpPresenter<V>{
 
+    FilteredQuizListPresenter listPresenter;
+    PlayQuizMvpPresenter playQuizMvpPresenter;
 
     public CategoryPresenter(Context context) {
         super(context);
-
+        listPresenter = new FilteredQuizListPresenter(context);
+        playQuizMvpPresenter = new PlayQuizPresenter(context);
     }
 
     @Override

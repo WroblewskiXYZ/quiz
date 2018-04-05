@@ -6,6 +6,8 @@ import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
