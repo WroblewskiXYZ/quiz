@@ -76,6 +76,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         return false;
     }
 
+
     @Override
     public void onDetach() {
         mActivity = null;

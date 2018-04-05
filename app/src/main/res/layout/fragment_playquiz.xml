@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:background="#313131"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/question_no"
+        style="@style/TextAppearance.AppCompat.Display2"
+        android:textSize="20sp"/>
+
+    <ProgressBar
+        android:id="@+id/pbProgress"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        style="@style/CustomProgressBar"
+        android:max="100"
+        android:progress="50"
+        android:layout_margin="@dimen/default_margin"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/question_example_content"
+        style="@style/TextAppearance.AppCompat.Display2"
+        android:layout_margin="@dimen/default_margin"
+        android:textSize="20sp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:maxHeight="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/default_margin"
+        android:src="@drawable/ic_vector_empty_image"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_answer1"
+                style="@style/ButtonAnswer" />
+            <Button
+                android:id="@+id/btn_answer2"
+                style="@style/ButtonAnswer" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_answer3"
+                style="@style/ButtonAnswer" />
+            <Button
+                android:id="@+id/btn_answer4"
+                style="@style/ButtonAnswer" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

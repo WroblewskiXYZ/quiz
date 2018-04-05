@@ -14,5 +14,8 @@
     <string name="unable_to_download_content">Unable to download content</string>
     <string name="no_available_content">No available content</string>
     <string name="go_back">Go back</string>
+    <string name="question_no">Pytanie %d / %d</string>
+    <string name="question_example_content">Co jest na poniższym obrazku? Podaj poprawną odpowiedź.</string>
+    <string name="answer">Answer</string>
 
 </resources>

@@ -9,4 +9,6 @@
     <color name="intro_bottom">#4fc1ce</color>
     <color name="themeColorButtonBackground">#20BBBBBB</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorButtonBackground">#6c6c6c</color>
+
 </resources>

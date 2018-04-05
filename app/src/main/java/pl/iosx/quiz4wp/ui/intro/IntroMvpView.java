@@ -7,7 +7,7 @@ import pl.iosx.quiz4wp.ui.base.MvpView;
  */
 
 public interface IntroMvpView extends MvpView {
-    void openMainActivity();
+    void openCategoryActivity();
     void updateStatusLabel(String text);
     void changeButtonRetryStatus(boolean visible, boolean enable);
     void updateProgressbarStatus(boolean visible, int percentage);

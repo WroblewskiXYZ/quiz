@@ -81,7 +81,7 @@ public class IntroPresenter<V extends IntroMvpView> extends BasePresenter<V> imp
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            mvpView.openMainActivity();
+                            mvpView.openCategoryActivity();
                         }
                     }, GOTO_ACTIVITY_DELAY);
                 }

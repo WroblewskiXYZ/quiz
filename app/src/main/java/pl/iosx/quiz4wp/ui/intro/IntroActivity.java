@@ -59,11 +59,10 @@ public class IntroActivity extends BaseActivity implements IntroMvpView {
     }
 
     @Override
-    public void openMainActivity() {
+    public void openCategoryActivity() {
         Intent intent = CategoryActivity.getIntent(this);
         startActivity(intent);
         finish();
-
     }
 
     @Override
