@@ -66,7 +66,7 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
 
     @Override
     public void onAnswerButtonClick(int answer) {
-        mvpView.onEnableAllButtons(false);
+        //mvpView.onEnableAllButtons(false);
         try
         {
             boolean status = playQuizBoard.onResponseAnswer(answer); // add later some animations (correct or not-> disable and change button color for 1s) and then update view

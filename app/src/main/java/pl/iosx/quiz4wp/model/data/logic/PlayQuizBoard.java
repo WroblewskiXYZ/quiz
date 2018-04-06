@@ -83,7 +83,7 @@ public class PlayQuizBoard implements IPlayQuizBoard {
     {
         if(quizModel!=null && quizModel.getQuestions()!=null)
         {
-            return questionCouter;
+            return questionCouter+1;
         }
         return 0;
     }

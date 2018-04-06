@@ -57,12 +57,12 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
 
     @Override
     public void onQuizRepeatButtonClick() {
-        categoryFinishQuizCallback.onReturnToQuizListCallback();
+        categoryFinishQuizCallback.onRetryQuizCallback(finishedQuiz);
     }
 
     @Override
     public void onReturnToQuizListButtonClick() {
-        categoryFinishQuizCallback.onRetryQuizCallback(finishedQuiz);
+        categoryFinishQuizCallback.onReturnToQuizListCallback();
     }
 
     @Override

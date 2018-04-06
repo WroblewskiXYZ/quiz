@@ -5,12 +5,11 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-<android.support.v4.view.ViewPager
-    android:id="@+id/vp_quiz"
+<FrameLayout
+    android:id="@+id/fragment_frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:clipToPadding="false" />
+    android:layout_height="match_parent">
+</FrameLayout>
 
 </LinearLayout>
 

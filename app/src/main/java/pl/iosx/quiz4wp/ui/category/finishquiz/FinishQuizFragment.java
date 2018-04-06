@@ -66,7 +66,8 @@ public class FinishQuizFragment<V extends FinishQuizMvpView> extends BaseFragmen
 
     @Override
     protected void setUp(View view) {
-        presenter.onAttach(this);
+        if(presenter!=null)
+            presenter.onAttach(this);
     }
 
     @Override
