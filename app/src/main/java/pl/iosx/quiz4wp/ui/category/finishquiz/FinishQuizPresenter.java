@@ -3,12 +3,15 @@ package pl.iosx.quiz4wp.ui.category.finishquiz;
 import android.content.Context;
 
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
+import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
 public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresenter<V> implements FinishQuizMvpPresenter<V> {
+
+    CategoryFinishQuizCallback categoryFinishQuizCallback;
 
     public FinishQuizPresenter(Context context) {
         super(context);
@@ -52,5 +55,10 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     @Override
     public void onReturnToQuizListButtonClick() {
 
+    }
+
+    @Override
+    public void setCallback(CategoryFinishQuizCallback callback) {
+        this.categoryFinishQuizCallback = callback;
     }
 }

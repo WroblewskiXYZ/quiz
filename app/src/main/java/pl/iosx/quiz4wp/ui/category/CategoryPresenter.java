@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import pl.iosx.quiz4wp.MvpPresenter;
 import pl.iosx.quiz4wp.QuizApp;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
@@ -18,7 +19,8 @@ import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<V> implements CategoryMvpPresenter<V>{
+public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<V>
+        implements CategoryMvpPresenter<V>, CategoryFinishQuizCallback, CategoryPlayQuizCallback{
 
     static final int SCREEN_MAIN = 0;
     static final int SCREEN_PLAY = 1;
@@ -38,6 +40,9 @@ public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
         mvpView.onQuizListShow(SCREEN_MAIN,listPresenter);
+        playQuizMvpPresenter.setCallBack(this);
+        finishQuizPresenter.setCallback(this);
+
     }
 
     @Override
@@ -63,6 +68,21 @@ public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<
     @Override
     protected void setUpView() {
         super.setUpView();
+
+    }
+
+    @Override
+    public void onQuizFinish(QuizModel quizModel) {
+
+    }
+
+    @Override
+    public void onReturnToQuizListCallback() {
+
+    }
+
+    @Override
+    public void onRetryQuizCallback(QuizModel quizModel) {
 
     }
 }

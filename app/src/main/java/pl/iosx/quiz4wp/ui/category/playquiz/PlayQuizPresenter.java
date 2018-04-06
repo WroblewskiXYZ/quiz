@@ -6,6 +6,7 @@ import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
+import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpPresenter;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
 
@@ -14,6 +15,8 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
  */
 
 public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>{
+
+    CategoryPlayQuizCallback categoryPlayQuizCallback;
 
     public PlayQuizPresenter(Context context) {
         super(context);
@@ -52,5 +55,10 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     @Override
     public void onAnswerButtonClick(int answer) {
 
+    }
+
+    @Override
+    public void setCallBack(CategoryPlayQuizCallback callBack) {
+        this.categoryPlayQuizCallback = callBack;
     }
 }

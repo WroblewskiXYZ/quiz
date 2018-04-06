@@ -1,6 +1,9 @@
 package pl.iosx.quiz4wp.ui.category.playquiz;
 
 import pl.iosx.quiz4wp.MvpPresenter;
+import pl.iosx.quiz4wp.ui.category.CategoryMvpView;
+import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
+import pl.iosx.quiz4wp.ui.category.CategoryPresenter;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
 
 /**
@@ -10,5 +13,5 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
 public interface PlayQuizMvpPresenter<V extends PlayQuizMvpView> extends MvpPresenter<V> {
 
     void onAnswerButtonClick(int answer);
-
+    void setCallBack(CategoryPlayQuizCallback callBack);
 }
