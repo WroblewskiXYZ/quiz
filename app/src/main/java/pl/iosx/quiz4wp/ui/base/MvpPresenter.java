@@ -10,4 +10,6 @@ package pl.iosx.quiz4wp.ui.base;
 interface MvpPresenter<V extends MvpView> {
     void onAttach(V mvpView);
     void onDetach();
+    void onPause();
+    void onResume();
 }

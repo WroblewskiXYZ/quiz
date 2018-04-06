@@ -9,6 +9,7 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
 import pl.iosx.quiz4wp.model.data.logic.PlayQuizBoard;
+import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpPresenter;
@@ -42,6 +43,33 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(quizModel!=null)
+            contentManager.save(quizModel, new DbManager.OperationListener() {
+                @Override
+                public void onFinish() {
+
+                }
+
+                @Override
+                public void onCanceled() {
+
+                }
+
+                @Override
+                public void onProgressChange(int percent) {
+
+                }
+            });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

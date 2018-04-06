@@ -82,6 +82,18 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(presenter!=null) presenter.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(presenter!=null) presenter.onPause();
+    }
+
+    @Override
     protected void setUp(View view) {
         if(presenter!=null)
             presenter.onAttach(this);

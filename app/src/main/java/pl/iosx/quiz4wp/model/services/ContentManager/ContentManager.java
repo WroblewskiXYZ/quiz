@@ -54,6 +54,10 @@ public class ContentManager {
         return quizModels;
     }
 
+    public void save(QuizModel quizModel, DbManager.OperationListener listener){
+        dbManager.addQuizModelAsync(quizModel,listener);
+    }
+
     public boolean hasQuizModels()
     {
         return (quizModels!=null && quizModels.size()>0);

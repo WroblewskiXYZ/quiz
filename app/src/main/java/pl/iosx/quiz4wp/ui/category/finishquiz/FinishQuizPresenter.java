@@ -8,6 +8,7 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModelHelper;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QRate;
+import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 
@@ -15,7 +16,7 @@ import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresenter<V> implements FinishQuizMvpPresenter<V> {
+public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresenter<V> implements FinishQuizMvpPresenter<V>,DbManager.OperationListener {
 
     CategoryFinishQuizCallback categoryFinishQuizCallback;
     private QuizModel finishedQuiz;
@@ -28,6 +29,7 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
         updateView();
+        if(finishedQuiz!=null) contentManager.save(finishedQuiz, this);
     }
 
     @Override
@@ -86,5 +88,20 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
                 mvpView.onRateUpdate(context.getString(R.string.rate_default));
             mvpView.onContentUpdate(String.format(context.getString(R.string.finishquiz_content),finishedQuiz.getPercentageScore()));
         }
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
+
+    @Override
+    public void onCanceled() {
+
+    }
+
+    @Override
+    public void onProgressChange(int percent) {
+
     }
 }

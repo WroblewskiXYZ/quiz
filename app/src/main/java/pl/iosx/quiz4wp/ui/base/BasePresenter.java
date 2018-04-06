@@ -29,6 +29,16 @@ public class BasePresenter<V extends MvpView> extends Presenter implements MvpPr
         mvpView = null;
     }
 
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onResume() {
+
+    }
+
     public boolean isAttached()
     {
         return mvpView!=null;
