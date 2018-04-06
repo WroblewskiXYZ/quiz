@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import io.reactivex.Observable;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModelHelper;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
@@ -168,17 +169,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<QuizModel> queryForAllQuizModels()
+    public List<QuizModel> queryForAllQuizModels(boolean updatelist)
     {
         List<QuizModel> models = null;
-       try {
-          models =  daoQuiz.queryForAll();
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
+        try {
+            models =  daoQuiz.queryForAll();
+            if(updatelist) QuizModelHelper.UpdateLists(models);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return models;
     }
-
 
     public boolean createOrUpdate(QuizModel quizModel)
     {

@@ -103,7 +103,7 @@ public class DataBaseQuizModelTest {
 
         DbManager dbManager = new DbManager(InstrumentationRegistry.getTargetContext());
         dbManager.clearDataBase();
-        List<QuizModel> newModels = dbManager.getAllQuizModels();
+        List<QuizModel> newModels = dbManager.getAllQuizModels(true);
 
         dbManager.clearDataBase();
 
@@ -143,9 +143,24 @@ public class DataBaseQuizModelTest {
         quizModels.clear();
         quizModels.add(quizModelExtended2);
 
-        dbManager.addQuizModels(quizModels);
+        int quizCount = quizModelExtended2.getQuestions().size();
 
-        List<QuizModel> newModels2 = dbManager.getAllQuizModels();
+        dbManager.addQuizModels(quizModels);
+        List<QuizModel> newModels2 = dbManager.getAllQuizModels(true);
+        QuizModel quizModel = newModels2.get(0);
+
+        assertNotNull(quizModel);
+        assertNotNull(quizModel.getQuestions());
+        assertEquals(quizModel.getQuestions().size(), quizCount);
+
+        dbManager.clearDataBase();
+        dbManager.addQuizModels(quizModels);
+        List<QuizModel> newModels3 = dbManager.getAllQuizModels(true);
+        QuizModel quizModel3 = newModels3.get(0);
+
+        assertNotNull(quizModel3);
+        assertNotNull(quizModel3.getQuestions());
+        assertEquals(quizModel3.getQuestions().size(), quizCount);
 
         System.out.println("done");
     }

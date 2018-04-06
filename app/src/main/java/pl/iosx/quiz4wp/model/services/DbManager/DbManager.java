@@ -94,7 +94,12 @@ public class DbManager {
 
     public List<QuizModel> getAllQuizModels()
     {
-        return myDatabaseHelper.queryForAllQuizModels();
+        return myDatabaseHelper.queryForAllQuizModels(false);
+    }
+
+    public List<QuizModel> getAllQuizModels(boolean refreshList)
+    {
+        return myDatabaseHelper.queryForAllQuizModels(refreshList);
     }
 
     ReadDataBaseListener readDataBaseListener;
@@ -108,7 +113,7 @@ public class DbManager {
         @SuppressLint("StaticFieldLeak") AsyncTask<Void,Void,List<QuizModel>> listAsyncTask = new AsyncTask<Void, Void, List<QuizModel>>() {
             @Override
             protected List<QuizModel> doInBackground(Void... voids) {
-                return myDatabaseHelper.queryForAllQuizModels();
+                return myDatabaseHelper.queryForAllQuizModels(true);
             }
 
             @Override

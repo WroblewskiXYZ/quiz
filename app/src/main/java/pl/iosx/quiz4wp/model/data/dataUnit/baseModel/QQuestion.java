@@ -6,6 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
@@ -147,5 +148,17 @@ public class QQuestion implements Cloneable{
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public void updateLists()
+    {
+        answers = new ArrayList<>();
+        if(answerForeignCollection!=null && answerForeignCollection.size()>0)
+        {
+            for(QAnswer answer : answerForeignCollection)
+            {
+                answers.add(answer);
+            }
+        }
     }
 }
