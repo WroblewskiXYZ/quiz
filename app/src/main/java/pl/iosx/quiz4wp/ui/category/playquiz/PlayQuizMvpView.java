@@ -21,4 +21,6 @@ public interface PlayQuizMvpView extends MvpView {
     void onQuestionContentUpdate(String question_content);
 
     void onAnswerButtonUpdate(int answer, boolean visible, String label);
+
+    void onEnableAllButtons(boolean enable);
 }

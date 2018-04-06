@@ -138,6 +138,14 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
         }
     }
 
+    @Override
+    public void onEnableAllButtons(boolean enable) {
+        btnAnswer1.setEnabled(enable);
+        btnAnswer2.setEnabled(enable);
+        btnAnswer3.setEnabled(enable);
+        btnAnswer4.setEnabled(enable);
+    }
+
     @OnClick(R.id.btn_answer1)
     public void onAnswerButton1Click(View view)
     {

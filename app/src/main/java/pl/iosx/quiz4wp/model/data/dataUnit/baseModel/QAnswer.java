@@ -11,6 +11,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "ANSWER")
 public class QAnswer {
 
+    public static final int ANSWER_CORRECT = 1;
+
     @DatabaseField(generatedId = true)
     private long id;
 
@@ -74,6 +76,11 @@ public class QAnswer {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isCorrect()
+    {
+        return isCorrect == ANSWER_CORRECT;
     }
 
     public int getIsCorrect() {

@@ -1,4 +1,4 @@
-package pl.iosx.quiz4wp.jsonConversion;
+package pl.iosx.quiz4wp.quizmodel;
 
 
 import org.junit.Before;
@@ -17,17 +17,18 @@ import com.google.common.io.Resources;
 import com.google.gson.Gson;
 //import org.apache.commons.io.IOUtils;
 
-import pl.iosx.quiz4wp.model.data.DataConverter;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizItem;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizListResponse;
 import pl.iosx.quiz4wp.model.data.dataUnit.ApiQuizContent;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
+import pl.iosx.quiz4wp.model.data.logic.PlayQuizBoard;
 
 /**
  * Created by lukaszwroblewski on 28.03.2018.
  */
 
-public class DataConversionUnitTest {
+public class QuizModelUnitTest {
 
     String quizItemResource  = "all_quiz_list.txt";
     String quizContentResource  = "quiz_content_6234787811510401.txt";
@@ -35,6 +36,7 @@ public class DataConversionUnitTest {
     List<ApiQuizItem> apiQuizList;
     ApiQuizItem apiQuizItem;
     ApiQuizContent apiQuizContent;
+    QuizModel quizModel;
 
     @Before
     @Test
@@ -74,6 +76,7 @@ public class DataConversionUnitTest {
 
     }
 
+    @Before
     @Test
     public void shouldReturnQuizModel()
     {
@@ -88,7 +91,7 @@ public class DataConversionUnitTest {
                 break;
             }
         }
-        QuizModel quizModel = new QuizModel(specQuizItem);
+        quizModel = new QuizModel(specQuizItem);
 
         assertEquals(quizModel.getId(),specId);
         assertTrue(quizModel.getTitle().startsWith("Rozpoznaj"));
@@ -114,6 +117,29 @@ public class DataConversionUnitTest {
         assertNotNull(quizModel.getRates());
         assertEquals(quizModel.getQuestions(),apiQuizContent.getQuestions());
         assertTrue(quizModel.isDownloaded());
+    }
+
+    @Test
+    public void shouldTestPlayQuizBoard()
+    {
+        boolean startStatus;
+        boolean answertStatus;
+
+        PlayQuizBoard playQuizBoard = new PlayQuizBoard(quizModel);
+        startStatus = playQuizBoard.onStart();
+        assertTrue(startStatus);
+
+        boolean runQuiz = true;
+        while (runQuiz)
+        {
+            QQuestion qQuestion=  playQuizBoard.getCurrentQuestion();
+            assertNotNull(qQuestion);
+            answertStatus = playQuizBoard.onResponseAnswer(1);
+            if(!playQuizBoard.onNextQuestion())
+            {
+                runQuiz = false;
+            }
+        }
     }
 
 }

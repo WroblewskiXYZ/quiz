@@ -4,7 +4,11 @@ import android.content.Context;
 
 import java.util.List;
 
+import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
+import pl.iosx.quiz4wp.model.data.logic.PlayQuizBoard;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpPresenter;
@@ -18,6 +22,7 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
 
     CategoryPlayQuizCallback categoryPlayQuizCallback;
     QuizModel quizModel;
+    PlayQuizBoard playQuizBoard;
 
     public PlayQuizPresenter(Context context) {
         super(context);
@@ -27,6 +32,11 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
         if(quizModel==null) categoryPlayQuizCallback.onError();
+        playQuizBoard = new PlayQuizBoard(quizModel);
+        if(playQuizBoard.onStart())
+            updateView();
+        else
+            categoryPlayQuizCallback.onError();
     }
 
     @Override
@@ -56,7 +66,19 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
 
     @Override
     public void onAnswerButtonClick(int answer) {
-
+        mvpView.onEnableAllButtons(false);
+        try
+        {
+            boolean status = playQuizBoard.onResponseAnswer(answer); // add later some animations (correct or not-> disable and change button color for 1s) and then update view
+            if(playQuizBoard.onNextQuestion())
+                updateView();
+            else
+                categoryPlayQuizCallback.onQuizFinish(quizModel);
+        }
+        catch (Exception e)
+        {
+            categoryPlayQuizCallback.onError();
+        }
     }
 
     @Override
@@ -71,6 +93,20 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
 
     private void updateView()
     {
+        QQuestion qQuestion = playQuizBoard.getCurrentQuestion();
+        if(qQuestion!=null)
+        {
+            mvpView.onProgressUpdate(playQuizBoard.getQuestionSize(),playQuizBoard.getProgress());
+            mvpView.onQuestionTitleUpdate(String.format("%s (%d/%d)\nPunkty: %d",context.getString(R.string.question_no),playQuizBoard.getProgress(),playQuizBoard.getQuestionSize(),quizModel.getPercentageScore()));
+            boolean imageVisible = qQuestion.getqImage()!=null && qQuestion.getqImage().getUrl()!=null && qQuestion.getqImage().getUrl().length()>0;
+            mvpView.onImageContentUpdate(imageVisible,qQuestion.getqImage());
+            mvpView.onQuestionContentUpdate(qQuestion.getText());
+            for(int i = 1; i<=4; i++)
+                mvpView.onAnswerButtonUpdate(i,false,"");
+            for(QAnswer answer: qQuestion.getAnswers())
+                mvpView.onAnswerButtonUpdate(answer.getOrder(),true,answer.getText());
+            mvpView.onEnableAllButtons(true);
+        }
 
     }
 }

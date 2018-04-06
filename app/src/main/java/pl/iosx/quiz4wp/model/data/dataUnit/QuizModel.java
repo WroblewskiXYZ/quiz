@@ -195,6 +195,33 @@ public class QuizModel {
         Collections.sort(questions);
     }
 
+    public void onQuestionDone(boolean isCorrect)
+    {
+        questionsDone++;
+        if(isCorrect)questionsPoints++;
+    }
+
+    public boolean isDone()
+    {
+        return questionsSize>0 && questionsSize == questionsDone;
+    }
+
+    public int getPercentageProgress()
+    {
+        return (questionsDone*100)/questionsSize;
+    }
+
+    public int getPercentageScore()
+    {
+        return (questionsPoints*100)/questionsSize;
+    }
+
+    public void resetScore()
+    {
+        questionsDone = 0;
+        questionsPoints = 0;
+    }
+
     public boolean isDownloaded() {
         return isDownloaded;
     }
@@ -339,18 +366,5 @@ public class QuizModel {
         this.questionsPoints = questionsPoints;
     }
 
-    public boolean isDone()
-    {
-        return questionsSize>0 && questionsSize == questionsDone;
-    }
 
-    public int getPercentageProgress()
-    {
-        return (questionsDone*100)/questionsSize;
-    }
-
-    public int getPercentageScore()
-    {
-        return (questionsPoints*100)/questionsSize;
-    }
 }

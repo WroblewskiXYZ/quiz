@@ -51,6 +51,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onQuizListShow(int screen, FilteredQuizListPresenter filteredQuizListPresenter) {
         FilteredQuizListFragment fragment = FilteredQuizListFragment.newInstance();
         fragment.setPresenter(filteredQuizListPresenter);
+        viewPager.setAdapter(categoryPagerAdapter);
         categoryPagerAdapter.set(screen,fragment);
         viewPager.setCurrentItem(screen);
     }
@@ -59,6 +60,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onPlayQuizShow(int screen, PlayQuizMvpPresenter playQuizMvpPresenter) {
         PlayQuizFragment fragment = PlayQuizFragment.newInstance();
         fragment.setPresenter(playQuizMvpPresenter);
+        viewPager.setAdapter(categoryPagerAdapter);
         categoryPagerAdapter.set(screen,fragment);
         viewPager.setCurrentItem(screen);
 
@@ -68,6 +70,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onFinishQuizShow(int screen, FinishQuizPresenter finishQuizPresenter) {
         FinishQuizFragment fragment = FinishQuizFragment.newInstance();
         fragment.setPresenter(finishQuizPresenter);
+        viewPager.setAdapter(categoryPagerAdapter);
         categoryPagerAdapter.set(screen,fragment);
         viewPager.setCurrentItem(screen);
     }
