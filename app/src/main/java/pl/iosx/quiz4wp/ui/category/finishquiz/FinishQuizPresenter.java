@@ -2,7 +2,12 @@ package pl.iosx.quiz4wp.ui.category.finishquiz;
 
 import android.content.Context;
 
+import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModelHelper;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QRate;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 
@@ -22,6 +27,7 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+        updateView();
     }
 
     @Override
@@ -51,12 +57,12 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
 
     @Override
     public void onQuizRepeatButtonClick() {
-
+        categoryFinishQuizCallback.onReturnToQuizListCallback();
     }
 
     @Override
     public void onReturnToQuizListButtonClick() {
-
+        categoryFinishQuizCallback.onRetryQuizCallback(finishedQuiz);
     }
 
     @Override
@@ -67,5 +73,18 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     @Override
     public void setFinishedQuiz(QuizModel finishedQuiz) {
         this.finishedQuiz = finishedQuiz;
+    }
+
+    private void updateView()
+    {
+        if(finishedQuiz!=null)
+        {
+            QRate rate = QuizModelHelper.GetRate(finishedQuiz);
+            if(rate!=null)
+                mvpView.onRateUpdate(rate.getContent());
+            else
+                mvpView.onRateUpdate(context.getString(R.string.rate_default));
+            mvpView.onContentUpdate(String.format(context.getString(R.string.finishquiz_content),finishedQuiz.getPercentageScore()));
+        }
     }
 }

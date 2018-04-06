@@ -34,14 +34,7 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
         if(page==0)
             firstFragment = fragment;
         else
-        {
-            secondFragment.getFragmentManager().beginTransaction()
-                    .remove(secondFragment)
-                    .attach(fragment)
-                    .commit();
             secondFragment = fragment;
-            this.count = 2;
-        }
         notifyDataSetChanged();
     }
 

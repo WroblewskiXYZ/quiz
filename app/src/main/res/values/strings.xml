@@ -15,6 +15,7 @@
     <string name="no_available_content">No available content</string>
     <string name="go_back">Go back</string>
     <string name="question_no">Pytanie</string>
+    <string name="rate_default">Sprobujesz jeszcze raz?</string>
     <string name="question_example_content">Co jest na poniższym obrazku? Podaj poprawną odpowiedź.</string>
     <string name="answer">Answer</string>
     <string name="btnlabel_goto_quizlist">Przejdź do listy quizów</string>
