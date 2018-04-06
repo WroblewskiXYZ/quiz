@@ -33,7 +33,8 @@ public class ContentManager {
     public void checkUpdate(final ContentManagerModules.CheckBaseListener checkBaseListener, boolean downloadContents)
     {
         setQuizModels(new ArrayList<QuizModel>());
-        ContentManagerModules.CheckUpdate(this, checkBaseListener,downloadContents);
+        ContentManagerModules.UpdateAllContent(this,checkBaseListener);
+       // ContentManagerModules.CheckUpdate(this, checkBaseListener,downloadContents);
     }
 
     protected void setQuizModels(List<QuizModel> quizModels) {

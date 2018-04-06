@@ -1,5 +1,6 @@
 package pl.iosx.quiz4wp.ui.category.filteredquizlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,6 +17,7 @@ import butterknife.ButterKnife;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.base.BaseFragment;
+import pl.iosx.quiz4wp.ui.intro.IntroActivity;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
@@ -73,12 +75,33 @@ public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends
     }
 
     @Override
-    public void onRetryClicked() {
+    public void onUnableToShow(String error) {
+        getBaseActivity().showMessage(error);
+    }
 
+    @Override
+    public void onUnableToDownloadContent(String error) {
+        getBaseActivity().showMessage(error);
+    }
+
+    @Override
+    public void onShowLoading() {
+        getBaseActivity().showLoading();
+    }
+
+    @Override
+    public void onHideLoading() {
+        getBaseActivity().hideLoading();
+    }
+
+    @Override
+    public void onRetryClicked() {
+        startActivity(IntroActivity.getStartIntent(getContext()));
+        getBaseActivity().finish();
     }
 
     @Override
     public void onItemClicked(int position, long id) {
-
+        presenter.onQuizItemClicked(position, id);
     }
 }

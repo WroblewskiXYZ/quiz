@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.services.ContentManager.ContentManagerModules;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryFilteredListCallback;
 import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
@@ -17,6 +18,7 @@ import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
 public class FilteredQuizListPresenter<V extends FilteredQuizListMvpView> extends BasePresenter<V>
 implements FilteredQuizListMvpPresenter<V>{
 
+    List<QuizModel> models;
     CategoryFilteredListCallback filteredListCallback;
 
     public FilteredQuizListPresenter(Context context) {
@@ -55,7 +57,7 @@ implements FilteredQuizListMvpPresenter<V>{
 
     @Override
     public void onViewPrepared() {
-        List<QuizModel> models = contentManager.getQuizModels();
+        models = contentManager.getQuizModels();
         if(models!=null)
             mvpView.onItemsUpdate(models);
     }
@@ -63,5 +65,20 @@ implements FilteredQuizListMvpPresenter<V>{
     @Override
     public void setCallback(CategoryFilteredListCallback callback) {
         this.filteredListCallback = callback;
+    }
+
+    public void onQuizItemClicked(int position, long id) {
+        if(models!=null && models.size()>position)
+        {
+            QuizModel model = models.get(position);
+            if(model.isDownloaded())
+            {
+                filteredListCallback.onQuizPlay(model);
+            }
+            else
+            {
+                
+            }
+        }
     }
 }

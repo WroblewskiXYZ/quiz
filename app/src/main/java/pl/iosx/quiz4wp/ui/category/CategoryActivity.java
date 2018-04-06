@@ -11,8 +11,14 @@ import butterknife.ButterKnife;
 import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.ui.base.BaseActivity;
+import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListFragment;
+import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
+import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizFragment;
+import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizFragment;
+import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
 
-public class CategoryActivity extends BaseActivity {
+public class CategoryActivity extends BaseActivity implements CategoryMvpView{
 
     @BindView(R.id.vp_quiz)
     ViewPager viewPager;
@@ -39,5 +45,36 @@ public class CategoryActivity extends BaseActivity {
         categoryPagerAdapter = new CategoryPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(categoryPagerAdapter);
         categoryMvpPresenter.onAttach(this);
+    }
+
+    @Override
+    public void onQuizListShow(int screen, FilteredQuizListPresenter filteredQuizListPresenter) {
+        FilteredQuizListFragment fragment = FilteredQuizListFragment.newInstance();
+        fragment.setPresenter(filteredQuizListPresenter);
+        categoryPagerAdapter.set(screen,fragment);
+        viewPager.setCurrentItem(screen);
+
+    }
+
+    @Override
+    public void onPlayQuizShow(int screen, PlayQuizMvpPresenter playQuizMvpPresenter) {
+        PlayQuizFragment fragment = PlayQuizFragment.newInstance();
+        fragment.setPresenter(playQuizMvpPresenter);
+        categoryPagerAdapter.set(screen,fragment);
+        viewPager.setCurrentItem(screen);
+
+    }
+
+    @Override
+    public void onFinishQuizShow(int screen, FinishQuizPresenter finishQuizPresenter) {
+        FinishQuizFragment fragment = FinishQuizFragment.newInstance();
+        fragment.setPresenter(finishQuizPresenter);
+        categoryPagerAdapter.set(screen,fragment);
+        viewPager.setCurrentItem(screen);
+    }
+
+    @Override
+    public void onErrorMessage(String message) {
+
     }
 }

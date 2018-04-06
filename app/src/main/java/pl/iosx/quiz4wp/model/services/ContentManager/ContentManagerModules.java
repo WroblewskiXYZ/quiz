@@ -21,6 +21,7 @@ public class ContentManagerModules {
                 contentManager.apiManager.downloadAllEmptyQuizModelsAsync(new ApiManager.ApiResponseListener() { // download all quiz in async mode
                     @Override
                     public void onReceived(List<QuizModel> models) {
+
                         ReportContentDownload(contentManager,checkBaseListener,models,downloadContents);
                     }
 

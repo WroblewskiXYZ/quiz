@@ -12,4 +12,8 @@ import pl.iosx.quiz4wp.ui.base.MvpView;
 public interface FilteredQuizListMvpView extends MvpView {
 
     void onItemsUpdate(List<QuizModel> quizModels);
+    void onUnableToShow(String error);
+    void onUnableToDownloadContent(String error);
+    void onShowLoading();
+    void onHideLoading();
 }

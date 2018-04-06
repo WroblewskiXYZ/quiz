@@ -3,6 +3,12 @@ package pl.iosx.quiz4wp.ui.category;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.ArrayMap;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListFragment;
 
@@ -14,12 +20,24 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
 
     private int count;
 
-    Fragment fragmentAllQuizzes;
+    Fragment firstFragment;
+    Fragment secondFragment;
 
     public CategoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        fragmentAllQuizzes = FilteredQuizListFragment.newInstance();
+        firstFragment = FilteredQuizListFragment.newInstance();
         this.count = 1;
+    }
+
+    public void set(int page, Fragment fragment)
+    {
+        if(page==0)
+            firstFragment = fragment;
+        else
+        {
+            secondFragment = fragment;
+            this.count = 2;
+        }
     }
 
     @Override
@@ -27,9 +45,9 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return fragmentAllQuizzes;
+                return firstFragment;
             case 1:
-                return null;// FragmentCategory1.newInstance return list of quiz of one category ;
+                return secondFragment;// FragmentCategory1.newInstance return list of quiz of one category ;
             default:
                 return null;
         }

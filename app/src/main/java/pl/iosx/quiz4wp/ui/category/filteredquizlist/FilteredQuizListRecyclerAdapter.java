@@ -155,7 +155,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
         }
 
         @Override
-        public void onBind(int position) {
+        public void onBind(final int position) {
             super.onBind(position);
 
 
@@ -178,8 +178,10 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
                     tvTitle.setText(quizModel.getTitle());
                     tvContent.setText(quizModel.getContent());
                     tvInfo.setText("Downloaded: " + quizModel.isDownloaded());
+                    itemView.setOnClickListener((a)->adapterCallback.onItemClicked(position,quizModel.getId()));
                 }
             }
+
         }
     }
 }

@@ -92,7 +92,7 @@ public class IntroPresenter<V extends IntroMvpView> extends BasePresenter<V> imp
                     mvpView.updateStatusLabel(context.getString(R.string.unable_to_download_content));
                     mvpView.changeButtonRetryStatus(true,true);
                 }
-            },true);
+            },false);
         }
     }
 
