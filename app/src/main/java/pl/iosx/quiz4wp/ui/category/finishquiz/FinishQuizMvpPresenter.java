@@ -1,6 +1,7 @@
 package pl.iosx.quiz4wp.ui.category.finishquiz;
 
 import pl.iosx.quiz4wp.MvpPresenter;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 
 /**
@@ -12,4 +13,6 @@ public interface FinishQuizMvpPresenter<V extends FinishQuizMvpView> extends Mvp
     void onQuizRepeatButtonClick();
     void onReturnToQuizListButtonClick();
     void setCallback(CategoryFinishQuizCallback callback);
+    void setFinishedQuiz(QuizModel finishedQuiz);
+
 }

@@ -13,5 +13,6 @@ public interface CategoryMvpView extends MvpView{
 
     void onQuizListShow(int screen, FilteredQuizListPresenter filteredQuizListPresenter);
     void onPlayQuizShow(int screen, PlayQuizMvpPresenter playQuizMvpPresenter);
-    void onPlayQuizShow(int screen, FinishQuizPresenter finishQuizPresenter);
+    void onFinishQuizShow(int screen, FinishQuizPresenter finishQuizPresenter);
+    void onErrorMessage(String message);
 }

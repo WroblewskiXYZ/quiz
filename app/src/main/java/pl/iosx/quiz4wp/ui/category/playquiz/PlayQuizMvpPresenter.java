@@ -1,6 +1,7 @@
 package pl.iosx.quiz4wp.ui.category.playquiz;
 
 import pl.iosx.quiz4wp.MvpPresenter;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.category.CategoryMvpView;
 import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
 import pl.iosx.quiz4wp.ui.category.CategoryPresenter;
@@ -14,4 +15,5 @@ public interface PlayQuizMvpPresenter<V extends PlayQuizMvpView> extends MvpPres
 
     void onAnswerButtonClick(int answer);
     void setCallBack(CategoryPlayQuizCallback callBack);
+    void setQuizModel(QuizModel quizModel);
 }

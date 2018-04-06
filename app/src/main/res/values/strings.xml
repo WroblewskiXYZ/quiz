@@ -22,5 +22,8 @@
     <string name="finishquestion_title">Ukoczyłes QUIZ !</string>
     <string name="finishquiz_content">Odpowiedziałes na %d %% pytan</string>
     <string name="finishquiz_rate">Poszło Ci całkiem nieźle!</string>
+    <string name="error_unable_to_provide_content">Nie można wyswietlic danych</string>
+    <string name="error_unable_to_run_quiz">Nie można wyswietlic danego quizu</string>
+    <string name="error_unable_to_finish_quiz">Nie można wyswietlic zakonczenia quizu</string>
 
 </resources>

@@ -9,4 +9,5 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 public interface CategoryFinishQuizCallback {
     void onReturnToQuizListCallback();
     void onRetryQuizCallback(QuizModel quizModel);
+    void onUnableToShow();
 }

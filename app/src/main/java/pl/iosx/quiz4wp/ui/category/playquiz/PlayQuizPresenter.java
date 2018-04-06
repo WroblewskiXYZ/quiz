@@ -17,6 +17,7 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
 public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>{
 
     CategoryPlayQuizCallback categoryPlayQuizCallback;
+    QuizModel quizModel;
 
     public PlayQuizPresenter(Context context) {
         super(context);
@@ -60,5 +61,10 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     @Override
     public void setCallBack(CategoryPlayQuizCallback callBack) {
         this.categoryPlayQuizCallback = callBack;
+    }
+
+    @Override
+    public void setQuizModel(QuizModel quizModel) {
+        this.quizModel = quizModel;
     }
 }

@@ -2,6 +2,7 @@ package pl.iosx.quiz4wp.ui.category.finishquiz;
 
 import android.content.Context;
 
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 
@@ -12,6 +13,7 @@ import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
 public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresenter<V> implements FinishQuizMvpPresenter<V> {
 
     CategoryFinishQuizCallback categoryFinishQuizCallback;
+    private QuizModel finishedQuiz;
 
     public FinishQuizPresenter(Context context) {
         super(context);
@@ -60,5 +62,10 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     @Override
     public void setCallback(CategoryFinishQuizCallback callback) {
         this.categoryFinishQuizCallback = callback;
+    }
+
+    @Override
+    public void setFinishedQuiz(QuizModel finishedQuiz) {
+        this.finishedQuiz = finishedQuiz;
     }
 }

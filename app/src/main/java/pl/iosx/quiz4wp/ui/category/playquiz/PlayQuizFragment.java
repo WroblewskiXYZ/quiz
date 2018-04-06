@@ -69,18 +69,20 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
         return fragment;
     }
 
+    public void setPresenter(PlayQuizMvpPresenter<PlayQuizMvpView> presenter) {
+        this.presenter = presenter;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playquiz, container, false);
         ButterKnife.bind(this, view);
-        presenter = new PlayQuizPresenter<>(view.getContext());
         return view;
     }
 
     @Override
     protected void setUp(View view) {
-
         presenter.onAttach(this);
     }
 

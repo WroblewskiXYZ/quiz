@@ -39,26 +39,29 @@ public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends
         return fragment;
     }
 
+    public void setPresenter(FilteredQuizListPresenter<FilteredQuizListMvpView> presenter) {
+        this.presenter = presenter;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filteredquizlist,container,false);
         ButterKnife.bind(this,view);
-        presenter = new FilteredQuizListPresenter<>(view.getContext());
-        presenter.onAttach(this);
-        filteredQuizListRecyclerAdapter = new FilteredQuizListRecyclerAdapter();
-        filteredQuizListRecyclerAdapter.setAdapterCallback(this);
-
         return view;
     }
 
     @Override
     protected void setUp(View view) {
+        filteredQuizListRecyclerAdapter = new FilteredQuizListRecyclerAdapter();
+        filteredQuizListRecyclerAdapter.setAdapterCallback(this);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(filteredQuizListRecyclerAdapter);
+        presenter.onAttach(this);
         presenter.onViewPrepared();
 
     }

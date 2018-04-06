@@ -51,18 +51,21 @@ public class FinishQuizFragment<V extends FinishQuizMvpView> extends BaseFragmen
         return fragment;
     }
 
+    public void setPresenter(FinishQuizMvpPresenter<FinishQuizMvpView> presenter) {
+        this.presenter = presenter;
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_finishquiz, container, false);
         ButterKnife.bind(this, view);
-        presenter = new FinishQuizPresenter<>(view.getContext());
         return view;
     }
 
     @Override
     protected void setUp(View view) {
-
         presenter.onAttach(this);
     }
 

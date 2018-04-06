@@ -8,4 +8,5 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 
 public interface CategoryPlayQuizCallback {
     void onQuizFinish(QuizModel quizModel);
+    void onError();
 }

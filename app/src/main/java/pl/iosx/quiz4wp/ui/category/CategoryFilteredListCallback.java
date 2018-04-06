@@ -8,4 +8,5 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 
 public interface CategoryFilteredListCallback {
     void onQuizPlay(QuizModel quizModel);
+    void onUnableToPlay();
 }
