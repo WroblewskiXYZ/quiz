@@ -37,6 +37,13 @@ public class ContentManager {
        // ContentManagerModules.CheckUpdate(this, checkBaseListener,downloadContents);
     }
 
+    public void downloadContentFor(QuizModel quizModel, ApiManager.DownloadListListener downloadListListener)
+    {
+        List<QuizModel> models = new ArrayList<>();
+        models.add(quizModel);
+        apiManager.downloadContentForQuizListAsync(models,downloadListListener);
+    }
+
     protected void setQuizModels(List<QuizModel> quizModels) {
         this.quizModels = quizModels;
         if(quizModels==null)

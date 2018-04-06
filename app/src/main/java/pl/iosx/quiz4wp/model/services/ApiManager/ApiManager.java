@@ -65,7 +65,7 @@ public class ApiManager {
     }
 
     DownloadListListener downloadListListener = null;
-    public void downloadContentForQuizList(final List<QuizModel> quizModelList, final DownloadListListener downloadListListener)
+    public void downloadContentForQuizListAsync(final List<QuizModel> quizModelList, final DownloadListListener downloadListListener)
     {
         this.operationListener = downloadListListener;
         this.downloadListListener = downloadListListener;

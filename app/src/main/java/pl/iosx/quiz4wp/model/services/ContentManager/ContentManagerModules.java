@@ -83,7 +83,7 @@ public class ContentManagerModules {
 
     public static void DownloadContentAndSave(final ContentManager contentManager, final CheckBaseListener checkBaseListener, final List<QuizModel> modelsToUpdate)
     {
-        contentManager.apiManager.downloadContentForQuizList(modelsToUpdate, new ApiManager.DownloadListListener() {
+        contentManager.apiManager.downloadContentForQuizListAsync(modelsToUpdate, new ApiManager.DownloadListListener() {
             @Override
             public void onDownload(List<QuizModel> models) {
                 ReportContentDownload(contentManager,checkBaseListener,modelsToUpdate,false);
