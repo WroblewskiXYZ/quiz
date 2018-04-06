@@ -1,5 +1,7 @@
 package pl.iosx.quiz4wp.model.data.dataUnit.baseModel;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
@@ -16,7 +18,7 @@ import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
  */
 
 @DatabaseTable(tableName = "QUESTION_ITEM")
-public class QQuestion implements Cloneable{
+public class QQuestion implements Cloneable, Comparable<QQuestion>{
 
     @DatabaseField(generatedId = true)
     private long id;
@@ -160,5 +162,11 @@ public class QQuestion implements Cloneable{
                 answers.add(answer);
             }
         }
+    }
+
+    @Override
+    public int compareTo(@NonNull QQuestion qQuestion) {
+        if(order==qQuestion.order) return 0;
+        else return order > qQuestion.order ? 1 : -1;
     }
 }

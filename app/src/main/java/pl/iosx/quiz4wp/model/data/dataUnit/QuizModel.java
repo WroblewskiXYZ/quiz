@@ -7,6 +7,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -161,6 +162,37 @@ public class QuizModel {
         this.rates = content.getRates();
         this.questionsSize = questions.size();
         this.isDownloaded = true;
+    }
+
+    public void updateLists() {
+        updateRateList();
+        updateQuestionList();
+    }
+
+    private void updateRateList()
+    {
+        rates = new ArrayList<>();
+        if(rateForeignCollection!=null && rateForeignCollection.size()>0)
+        {
+            for(QRate rate : rateForeignCollection)
+            {
+                rates.add(rate);
+            }
+        }
+    }
+
+    private void updateQuestionList()
+    {
+        questions = new ArrayList<>();
+        if(questionForeignCollection!=null && questionForeignCollection.size()>0)
+        {
+            for(QQuestion question : questionForeignCollection)
+            {
+                question.updateLists();
+                questions.add(question);
+            }
+        }
+        Collections.sort(questions);
     }
 
     public boolean isDownloaded() {
@@ -320,35 +352,5 @@ public class QuizModel {
     public int getPercentageScore()
     {
         return (questionsPoints*100)/questionsSize;
-    }
-
-    public void updateLists() {
-        updateRateList();
-        updateQuestionList();
-    }
-
-    private void updateRateList()
-    {
-        rates = new ArrayList<>();
-        if(rateForeignCollection!=null && rateForeignCollection.size()>0)
-        {
-            for(QRate rate : rateForeignCollection)
-            {
-                rates.add(rate);
-            }
-        }
-    }
-
-    private void updateQuestionList()
-    {
-        questions = new ArrayList<>();
-        if(questionForeignCollection!=null && questionForeignCollection.size()>0)
-        {
-            for(QQuestion question : questionForeignCollection)
-            {
-                question.updateLists();
-                questions.add(question);
-            }
-        }
     }
 }
