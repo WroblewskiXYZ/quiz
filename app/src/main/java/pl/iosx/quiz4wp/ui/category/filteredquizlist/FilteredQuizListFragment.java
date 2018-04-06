@@ -63,9 +63,11 @@ public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(filteredQuizListRecyclerAdapter);
-        presenter.onAttach(this);
-        presenter.onViewPrepared();
-
+        if(presenter!=null)
+        {
+            presenter.onAttach(this);
+            presenter.onViewPrepared();
+        }
     }
 
     @Override

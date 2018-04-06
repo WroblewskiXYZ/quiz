@@ -51,6 +51,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onQuizListShow(int screen, FilteredQuizListPresenter filteredQuizListPresenter) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         FilteredQuizListFragment fragment = FilteredQuizListFragment.newInstance();
+        fragment.setRetainInstance(true);
         fragment.setPresenter(filteredQuizListPresenter);
         showFragment(fragment,R.anim.enter_right,R.anim.exit_left);
 
@@ -60,6 +61,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onPlayQuizShow(int screen, PlayQuizMvpPresenter playQuizMvpPresenter) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         PlayQuizFragment fragment = PlayQuizFragment.newInstance();
+        fragment.setRetainInstance(true);
         fragment.setPresenter(playQuizMvpPresenter);
         showFragment(fragment,R.anim.enter_left,R.anim.exit_right);
     }
@@ -68,6 +70,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     public void onFinishQuizShow(int screen, FinishQuizPresenter finishQuizPresenter) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         FinishQuizFragment fragment = FinishQuizFragment.newInstance();
+        fragment.setRetainInstance(true);
         fragment.setPresenter(finishQuizPresenter);
         showFragment(fragment,R.anim.enter_left,R.anim.exit_right);
     }

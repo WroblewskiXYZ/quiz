@@ -83,7 +83,8 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
 
     @Override
     protected void setUp(View view) {
-        presenter.onAttach(this);
+        if(presenter!=null)
+            presenter.onAttach(this);
     }
 
     @Override
