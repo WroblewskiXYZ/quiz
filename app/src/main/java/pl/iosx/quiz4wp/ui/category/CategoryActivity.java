@@ -29,6 +29,7 @@ public class CategoryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        categoryMvpPresenter = new CategoryPresenter(this);
         ButterKnife.bind(this);
         setUp();
     }

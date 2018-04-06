@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:background="#313131"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/finishquestion_title"
+        style="@style/TextAppearance.AppCompat.Display2"
+        android:textSize="30sp"
+        android:layout_marginTop="50dp"/>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:text="@string/finishquiz_content"
+        style="@style/TextAppearance.AppCompat.Display2"
+        android:layout_margin="@dimen/default_margin"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tv_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_above="@id/tv_content"
+        android:text="@string/finishquiz_rate"
+        style="@style/TextAppearance.AppCompat.Display2"
+        android:layout_margin="@dimen/default_margin"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/tv_content">
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/btn_goto_quizlist"
+            style="@style/ButtonAnswer"
+            android:text="@string/btnlabel_goto_quizlist"/>
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/btn_repeat"
+            style="@style/ButtonAnswer"
+            android:text="@string/btnlabel_retry_quiz"/>
+    </LinearLayout>
+
+</RelativeLayout>
