@@ -26,5 +26,11 @@
     <string name="error_unable_to_provide_content">Nie można wyswietlic danych</string>
     <string name="error_unable_to_run_quiz">Nie można wyswietlic danego quizu</string>
     <string name="error_unable_to_finish_quiz">Nie można wyswietlic zakonczenia quizu</string>
+    <string name="quiz_offline"></string>
+    <string name="quiz_online">Kliknij aby pobrać</string>
+    <string name="quiz_score">Wynik:</string>
+    <string name="quiz_progress">Ukończono:</string>
+    <string name="quiz_category">Kategoria:</string>
+
 
 </resources>

@@ -1,5 +1,6 @@
 package pl.iosx.quiz4wp.ui.category.filteredquizlist;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QCategory;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QMainPhoto;
 import pl.iosx.quiz4wp.ui.base.BaseViewHolder;
 
@@ -154,6 +156,7 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
             ivImage.setImageDrawable(null);
         }
 
+        @SuppressLint({"DefaultLocale", "SetTextI18n"})
         @Override
         public void onBind(final int position) {
             super.onBind(position);
@@ -177,7 +180,19 @@ public class FilteredQuizListRecyclerAdapter extends RecyclerView.Adapter<BaseVi
 
                     tvTitle.setText(quizModel.getTitle());
                     tvContent.setText(quizModel.getContent());
-                    tvInfo.setText("Downloaded: " + quizModel.isDownloaded());
+                    QCategory category = quizModel.getCategory();
+                    String info = "";
+                    if(category!=null)
+                        info += String.format("%s %s\n",itemView.getResources().getString(R.string.quiz_category), category.getName());
+                    info += itemView.getResources().getString(quizModel.isDownloaded()? R.string.quiz_offline:R.string.quiz_online);
+                    if(quizModel.isDownloaded())
+                    {
+                        if(quizModel.isDone())
+                            info+= String.format("%s %d %%",itemView.getResources().getString(R.string.quiz_score), quizModel.getPercentageScore());
+                        else
+                            info+= String.format("%s %d %%",itemView.getResources().getString(R.string.quiz_progress), quizModel.getPercentageProgress());
+                    }
+                    tvInfo.setText(info);
                     itemView.setOnClickListener((a)->adapterCallback.onItemClicked(position,quizModel.getId()));
                 }
             }

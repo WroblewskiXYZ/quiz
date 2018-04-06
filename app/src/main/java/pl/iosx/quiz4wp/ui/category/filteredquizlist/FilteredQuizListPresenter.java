@@ -87,13 +87,13 @@ implements FilteredQuizListMvpPresenter<V>{
                         {
                             mvpView.onHideLoading();
                             QuizModel model1 = models.get(0);
-                            filteredListCallback.onQuizPlay(model1);
-
+                            if(model1.isDownloaded())
+                            {
+                                filteredListCallback.onQuizPlay(model1);
+                                return;
+                            }
                         }
-                        else
-                        {
-                            mvpView.onUnableToDownloadContent(context.getResources().getString(R.string.error_unable_to_provide_content));
-                        }
+                        mvpView.onUnableToDownloadContent(context.getResources().getString(R.string.error_unable_to_provide_content));
                     }
 
                     @Override
