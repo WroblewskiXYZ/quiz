@@ -4,7 +4,9 @@ import android.content.Context;
 
 import java.util.List;
 
+import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
 import pl.iosx.quiz4wp.model.services.ContentManager.ContentManagerModules;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.CategoryFilteredListCallback;
@@ -77,7 +79,39 @@ implements FilteredQuizListMvpPresenter<V>{
             }
             else
             {
-                
+                mvpView.onShowLoading();
+                contentManager.downloadContentFor(model, new ApiManager.DownloadListListener() {
+                    @Override
+                    public void onDownload(List<QuizModel> models) {
+                        if(models.size()>0)
+                        {
+                            mvpView.onHideLoading();
+                            QuizModel model1 = models.get(0);
+                            filteredListCallback.onQuizPlay(model1);
+
+                        }
+                        else
+                        {
+                            mvpView.onUnableToDownloadContent(context.getResources().getString(R.string.error_unable_to_provide_content));
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.onHideLoading();
+                    }
+
+                    @Override
+                    public void onCanceled() {
+                        mvpView.onHideLoading();
+                        mvpView.onUnableToDownloadContent(context.getResources().getString(R.string.error_unable_to_provide_content));
+                    }
+
+                    @Override
+                    public void onProgressChange(int percent) {
+
+                    }
+                });
             }
         }
     }

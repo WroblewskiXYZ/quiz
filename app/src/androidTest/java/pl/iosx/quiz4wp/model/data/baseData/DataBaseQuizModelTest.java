@@ -102,6 +102,7 @@ public class DataBaseQuizModelTest {
     public void shouldAddQuizTest() throws SQLException, IOException, CloneNotSupportedException {
 
         DbManager dbManager = new DbManager(InstrumentationRegistry.getTargetContext());
+        dbManager.clearDataBase();
         List<QuizModel> newModels = dbManager.getAllQuizModels();
 
         dbManager.clearDataBase();

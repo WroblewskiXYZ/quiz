@@ -87,7 +87,6 @@ public class QuizModel {
 
     public QuizModel()
     {
-        isDownloaded = false;
     }
 
     public QuizModel(ApiQuizItem item)

@@ -121,7 +121,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public void clearDataBase()
     {
-        //this.onCreate(getWritableDatabase());
+        onCreate(currentDB);
     }
 
     private void dropAllTabs() {

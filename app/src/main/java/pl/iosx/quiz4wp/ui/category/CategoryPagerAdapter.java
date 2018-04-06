@@ -38,6 +38,7 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
             secondFragment = fragment;
             this.count = 2;
         }
+        notifyDataSetChanged();
     }
 
     @Override

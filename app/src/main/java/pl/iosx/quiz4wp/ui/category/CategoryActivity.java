@@ -53,7 +53,6 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
         fragment.setPresenter(filteredQuizListPresenter);
         categoryPagerAdapter.set(screen,fragment);
         viewPager.setCurrentItem(screen);
-
     }
 
     @Override

@@ -26,6 +26,7 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+        if(quizModel==null) categoryPlayQuizCallback.onError();
     }
 
     @Override
@@ -66,5 +67,10 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     @Override
     public void setQuizModel(QuizModel quizModel) {
         this.quizModel = quizModel;
+    }
+
+    private void updateView()
+    {
+
     }
 }
