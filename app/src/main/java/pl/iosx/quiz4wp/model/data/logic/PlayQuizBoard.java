@@ -28,8 +28,9 @@ public class PlayQuizBoard implements IPlayQuizBoard {
         if(quizModel!=null
                 && quizModel.getQuestions()!=null
                 && quizModel.getQuestions().size()>0
-                && quizModel.getQuestionsSize() == quizModel.getQuestions().size())
+                && quizModel.getQuestions().size()>0)
         {
+            quizModel.setQuestionsSize(quizModel.getQuestions().size());
             if(quizModel.isDone()) quizModel.resetScore();
             questionCouter = quizModel.getQuestionsDone();
             pickNextQuestion();
@@ -75,7 +76,7 @@ public class PlayQuizBoard implements IPlayQuizBoard {
     private void pickNextQuestion()
     {
         currentQuestion = null;
-        if(questionCouter<quizModel.getQuestionsSize())
+        if(questionCouter<quizModel.getQuestions().size())
             currentQuestion = quizModel.getQuestions().get(questionCouter);
     }
 

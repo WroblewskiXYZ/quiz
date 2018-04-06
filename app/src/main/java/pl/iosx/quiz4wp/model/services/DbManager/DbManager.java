@@ -154,6 +154,7 @@ public class DbManager {
     public void addQuizModelAsync(QuizModel quizModel, OperationListener listener)
     {
         List<QuizModel> quizModels = new ArrayList<>();
+        quizModels.add(quizModel);
         addQuizModelsAsync(quizModels,listener);
     }
 

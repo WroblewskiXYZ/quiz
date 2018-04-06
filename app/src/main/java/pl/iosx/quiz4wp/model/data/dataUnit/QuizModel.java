@@ -203,7 +203,7 @@ public class QuizModel {
 
     public boolean isDone()
     {
-        return questionsSize>0 && questionsSize == questionsDone;
+        return questionsSize>0 && questionsSize <= questionsDone;
     }
 
     public int getPercentageProgress()

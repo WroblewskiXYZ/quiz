@@ -25,7 +25,6 @@
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <name android:name="android.intent.name.LAUNCHER" />
             </intent-filter>
         </activity>
