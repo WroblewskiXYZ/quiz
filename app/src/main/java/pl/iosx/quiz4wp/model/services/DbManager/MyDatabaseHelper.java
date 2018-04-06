@@ -33,7 +33,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "DBName";
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     Dao<QuizModel,Long> daoQuiz;
     Dao<QCategory,Long> daoCategory;
@@ -189,21 +189,30 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             createOrUpdate(newQuizModel, quizModel.getMainPhoto());
             createOrUpdate(newQuizModel, quizModel.getCategory());
 
-            daoQuiz.update(newQuizModel);
-
             if(quizModel.isDownloaded())
             {
                 if(quizModel.getRates()!=null)
                 {
                     daoQuiz.refresh(newQuizModel);
+                    for(QRate rate : newQuizModel.getRateForeignCollection()) // delete all answers, before adding new ones
+                        daoRate.delete(rate);
+
                     for (QRate qRate : quizModel.getRates())
                         createOrUpdate(newQuizModel, qRate);
                 }
                 if(quizModel.getQuestions()!=null)
                 {
+                    daoQuiz.refresh(newQuizModel);
+                    for(QQuestion qQuestion : newQuizModel.getQuestionForeignCollection())
+                        daoQuestions.delete(qQuestion);
+
                     for (QQuestion qQuestion : quizModel.getQuestions()) {
                         createOrUpdate(newQuizModel,qQuestion);
                         daoQuestions.refresh(qQuestion);
+
+                        for(QAnswer answer : qQuestion.getAnswerForeignCollection()) // delete all answers, before adding new ones with generated id
+                            daoAnswer.delete(answer);
+
                         if(qQuestion.getAnswers()!=null)
                         {
                             for (QAnswer answer : qQuestion.getAnswers()) {
@@ -213,6 +222,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     }
                 }
             }
+            daoQuiz.update(newQuizModel);
             return true;
         }
         catch (SQLException e)

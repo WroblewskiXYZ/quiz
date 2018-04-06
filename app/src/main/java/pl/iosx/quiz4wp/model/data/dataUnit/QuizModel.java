@@ -25,13 +25,13 @@ public class QuizModel {
     @DatabaseField(id = true)
     private long id;
 
-    @DatabaseField (columnName = "QUESTION_SIZE")
+    @DatabaseField (columnName = "QUESTIONSIZE")
     private int questionsSize;
 
-    @DatabaseField (columnName = "QUESTION_DONE")
+    @DatabaseField (columnName = "QUESTIONDONE")
     private int questionsDone;
 
-    @DatabaseField (columnName = "QUESTION_POINTS")
+    @DatabaseField (columnName = "QUESTIONPOINTS")
     private int questionsPoints;
 
     @ForeignCollectionField
@@ -39,7 +39,7 @@ public class QuizModel {
 
     private List<QQuestion> questions;
 
-    @DatabaseField (columnName = "CREATED_AT", dataType = DataType.DATE_LONG)
+    @DatabaseField (columnName = "CREATED", dataType = DataType.DATE_LONG)
     private Date created;
 
     @DatabaseField(columnName = "TITLE")
@@ -51,7 +51,7 @@ public class QuizModel {
     @DatabaseField(columnName = "CONTENT")
     private String content;
 
-    @DatabaseField(columnName = "MAIN_PHOTO_ID", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
+    @DatabaseField(columnName = "MAINPHOTO", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
     private QMainPhoto mainPhoto;
 
     @DatabaseField(columnName = "BATTLE")
@@ -60,16 +60,16 @@ public class QuizModel {
     @DatabaseField(columnName = "CATEGORY_ID", foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
     private QCategory category;
 
-    @DatabaseField(columnName = "AVG_RESULT")
+    @DatabaseField(columnName = "AVGRESULT")
     private double avgResult;
 
-    @DatabaseField(columnName = "RESULT_COUNT")
+    @DatabaseField(columnName = "RESULTCOUNT")
     private int resultCount;
 
-    @DatabaseField(columnName = "USE_BATTLE_DONE")
+    @DatabaseField(columnName = "USEBATTLEDONE")
     private boolean userBattleDone;
 
-    @DatabaseField(columnName = "DOWNLOAD_STATUS")
+    @DatabaseField(columnName = "DOWNLOADSTATUS")
     private boolean isDownloaded;
 
     public ForeignCollection<QRate> getRateForeignCollection() {
@@ -94,9 +94,12 @@ public class QuizModel {
         update(item);
     }
 
-    public QuizModel(long id, int questionsSize, List<QQuestion> questions, Date created, String title, String type, String content, QMainPhoto mainPhoto, boolean isBattle, QCategory category, double avgResult, int resultCount, boolean userBattleDone) {
+    public QuizModel(long id, int questionsSize, int questionsDone, int questionsPoints, ForeignCollection<QQuestion> questionForeignCollection, List<QQuestion> questions, Date created, String title, String type, String content, QMainPhoto mainPhoto, boolean isBattle, QCategory category, double avgResult, int resultCount, boolean userBattleDone, boolean isDownloaded, ForeignCollection<QRate> rateForeignCollection, List<QRate> rates) {
         this.id = id;
         this.questionsSize = questionsSize;
+        this.questionsDone = questionsDone;
+        this.questionsPoints = questionsPoints;
+        this.questionForeignCollection = questionForeignCollection;
         this.questions = questions;
         this.created = created;
         this.title = title;
@@ -108,11 +111,14 @@ public class QuizModel {
         this.avgResult = avgResult;
         this.resultCount = resultCount;
         this.userBattleDone = userBattleDone;
+        this.isDownloaded = isDownloaded;
+        this.rateForeignCollection = rateForeignCollection;
+        this.rates = rates;
     }
 
     public QuizModel getNew()
     {
-        return new QuizModel(id,questionsSize,null,created,title,type,content,null,isBattle,null,avgResult,resultCount,userBattleDone);
+        return new QuizModel(id,questionsSize,questionsDone,questionsPoints,null, null,created,title,type,content,null,isBattle,null,avgResult,resultCount,userBattleDone, isDownloaded,null,null);
     }
 
     public void update(ApiQuizItem item)
@@ -154,11 +160,8 @@ public class QuizModel {
 
         this.rates = content.getRates();
 
-        if(questions!=null)
-        {
-            this.questionsSize = questions.size();
-            this.isDownloaded = true;
-        }
+        this.questionsSize = questions.size();
+        this.isDownloaded = true;
     }
 
     public boolean isDownloaded() {

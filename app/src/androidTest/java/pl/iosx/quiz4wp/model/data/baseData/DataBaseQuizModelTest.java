@@ -135,12 +135,13 @@ public class DataBaseQuizModelTest {
 
         QuizModel quizModelExtended2 = new QuizModel(specQuizItem2);
         quizModelExtended2.update(apiQuizContent2);
-
+        quizModelExtended2.setQuestionsDone(5);
+        quizModelExtended2.setQuestionsPoints(4);
 
         System.out.println("update 2 extended quiz");
 
-        quizModels.add(0,quizModelExtended);
-        quizModels.add(0,quizModelExtended2);
+        quizModels.clear();
+        quizModels.add(quizModelExtended2);
 
         dbManager.addQuizModels(quizModels);
 
