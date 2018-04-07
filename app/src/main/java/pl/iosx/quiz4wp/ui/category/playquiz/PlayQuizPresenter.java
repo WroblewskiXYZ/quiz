@@ -1,5 +1,6 @@
 package pl.iosx.quiz4wp.ui.category.playquiz;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.util.List;
@@ -119,13 +120,19 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
         this.quizModel = quizModel;
     }
 
+    @SuppressLint("DefaultLocale")
     private void updateView()
     {
         QQuestion qQuestion = playQuizBoard.getCurrentQuestion();
         if(qQuestion!=null && qQuestion.getAnswers()!=null && qQuestion.getAnswers().size()>0)
         {
             mvpView.onProgressUpdate(playQuizBoard.getQuestionSize(),playQuizBoard.getProgress());
-            mvpView.onQuestionTitleUpdate(String.format("%s (%d/%d)\nPunkty: %d",context.getString(R.string.question_no),playQuizBoard.getProgress(),playQuizBoard.getQuestionSize(),quizModel.getPercentageScore()));
+            mvpView.onQuestionTitleUpdate(String.format("%s (%d/%d)\n%s %d %%",
+                    context.getString(R.string.question_no),
+                    playQuizBoard.getProgress(),
+                    playQuizBoard.getQuestionSize(),
+                    context.getString(R.string.quiz_score),
+                    quizModel.getPercentageScore()));
             boolean imageVisible = qQuestion.getqImage()!=null && qQuestion.getqImage().getUrl()!=null && qQuestion.getqImage().getUrl().length()>0;
             mvpView.onImageContentUpdate(imageVisible,qQuestion.getqImage());
             mvpView.onQuestionContentUpdate(qQuestion.getText());
