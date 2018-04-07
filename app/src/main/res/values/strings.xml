@@ -32,6 +32,6 @@
     <string name="quiz_score">Wynik:</string>
     <string name="quiz_progress">Ukończono:</string>
     <string name="quiz_category">Kategoria:</string>
-
+    <string name="quiz_broken">Uszkodzona zawartosc</string>
 
 </resources>

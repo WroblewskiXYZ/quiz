@@ -366,5 +366,8 @@ public class QuizModel {
         this.questionsPoints = questionsPoints;
     }
 
-
+    public void setBroken() {
+        isDownloaded = false;
+        setCreated(new Date());
+    }
 }

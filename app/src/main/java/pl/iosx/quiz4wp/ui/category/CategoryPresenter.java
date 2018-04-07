@@ -84,6 +84,12 @@ public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<
     }
 
     @Override
+    public void onReturnToQuizListCallback(String error) {
+        mvpView.onErrorMessage(error);
+        gotToQuizList();
+    }
+
+    @Override
     public void onReturnToQuizListCallback() {
         gotToQuizList();
     }

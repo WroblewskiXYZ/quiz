@@ -19,7 +19,7 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>{
+public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>,DbManager.OperationListener {
 
     CategoryPlayQuizCallback categoryPlayQuizCallback;
     QuizModel quizModel;
@@ -122,7 +122,7 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     private void updateView()
     {
         QQuestion qQuestion = playQuizBoard.getCurrentQuestion();
-        if(qQuestion!=null)
+        if(qQuestion!=null && qQuestion.getAnswers()!=null && qQuestion.getAnswers().size()>0)
         {
             mvpView.onProgressUpdate(playQuizBoard.getQuestionSize(),playQuizBoard.getProgress());
             mvpView.onQuestionTitleUpdate(String.format("%s (%d/%d)\nPunkty: %d",context.getString(R.string.question_no),playQuizBoard.getProgress(),playQuizBoard.getQuestionSize(),quizModel.getPercentageScore()));
@@ -135,6 +135,32 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
                 mvpView.onAnswerButtonUpdate(answer.getOrder(),true,answer.getText());
             mvpView.onEnableAllButtons(true);
         }
+        else
+        {
+            quizModel.setBroken();
+            contentManager.save(quizModel, this);
+        }
+
+    }
+
+    private void raportBrokenContent()
+    {
+        categoryPlayQuizCallback.onReturnToQuizListCallback(context.getResources().getString(R.string.quiz_broken));
+
+    }
+
+    @Override
+    public void onFinish() {
+        raportBrokenContent();
+    }
+
+    @Override
+    public void onCanceled() {
+        raportBrokenContent();
+    }
+
+    @Override
+    public void onProgressChange(int percent) {
 
     }
 }
