@@ -14,7 +14,7 @@ import pl.iosx.quiz4wp.utilities.Utilities;
  * Created by lukaszwroblewski on 02.04.2018.
  */
 
-public abstract class BaseFragment extends Fragment implements MvpView {
+public abstract class BaseFragment extends Fragment implements IMvpView {
 
     private BaseActivity mActivity;
     private ProgressDialog mProgressDialog;
@@ -84,9 +84,9 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     }
 
     @Override
-    public void openStartActivity() {
+    public void openBaseActivity() {
         if (mActivity != null) {
-            mActivity.openStartActivity();
+            mActivity.openBaseActivity();
         }
     }
 

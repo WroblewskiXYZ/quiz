@@ -2,32 +2,26 @@ package pl.iosx.quiz4wp.ui.category;
 
 import android.content.Context;
 
-import javax.inject.Inject;
-
-import pl.iosx.quiz4wp.MvpPresenter;
-import pl.iosx.quiz4wp.QuizApp;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
-import pl.iosx.quiz4wp.model.services.ContentManager.ContentManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
-import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizFragment;
 import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizPresenter;
-import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.IPlayQuizMvpPresenter;
 import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class CategoryPresenter<V extends CategoryMvpView> extends BasePresenter<V>
-        implements CategoryMvpPresenter<V>, CategoryFinishQuizCallback, CategoryPlayQuizCallback, CategoryFilteredListCallback{
+public class CategoryPresenter<V extends ICategoryMvpView> extends BasePresenter<V>
+        implements ICategoryMvpPresenter<V>, ICategoryFinishQuizCallback, ICategoryPlayQuizCallback, ICategoryFilteredListCallback {
 
     static final int SCREEN_MAIN = 0;
     static final int SCREEN_PLAY = 1;
 
     FilteredQuizListPresenter listPresenter;
-    PlayQuizMvpPresenter playQuizMvpPresenter;
+    IPlayQuizMvpPresenter playQuizMvpPresenter;
     FinishQuizPresenter finishQuizPresenter;
 
     public CategoryPresenter(Context context) {

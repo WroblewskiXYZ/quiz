@@ -1,6 +1,5 @@
 package pl.iosx.quiz4wp.ui.category.filteredquizlist;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -23,8 +22,8 @@ import pl.iosx.quiz4wp.ui.intro.IntroActivity;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends BaseFragment
-        implements FilteredQuizListMvpView, FilteredQuizListRecyclerAdapter.AdapterCallback {
+public class FilteredQuizListFragment<V extends IFilteredQuizListMvpView> extends BaseFragment
+        implements IFilteredQuizListMvpView, FilteredQuizListRecyclerAdapter.AdapterCallback {
 
 
     @BindView(R.id.rv_quizlist)
@@ -32,7 +31,7 @@ public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends
 
     FilteredQuizListRecyclerAdapter filteredQuizListRecyclerAdapter;
 
-    FilteredQuizListPresenter<FilteredQuizListMvpView> presenter;
+    FilteredQuizListPresenter<IFilteredQuizListMvpView> presenter;
 
     public static FilteredQuizListFragment newInstance() {
         Bundle args = new Bundle();
@@ -41,7 +40,7 @@ public class FilteredQuizListFragment<V extends FilteredQuizListMvpView> extends
         return fragment;
     }
 
-    public void setPresenter(FilteredQuizListPresenter<FilteredQuizListMvpView> presenter) {
+    public void setPresenter(FilteredQuizListPresenter<IFilteredQuizListMvpView> presenter) {
         this.presenter = presenter;
     }
 

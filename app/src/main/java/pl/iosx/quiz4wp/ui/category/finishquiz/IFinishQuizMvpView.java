@@ -1,13 +1,12 @@
 package pl.iosx.quiz4wp.ui.category.finishquiz;
 
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
-import pl.iosx.quiz4wp.ui.base.MvpView;
+import pl.iosx.quiz4wp.ui.base.IMvpView;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public interface FinishQuizMvpView extends MvpView {
+public interface IFinishQuizMvpView extends IMvpView {
 
     void onTitleUpdate(String title);
 

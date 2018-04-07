@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.utilities.Utilities;
 
 /**
@@ -21,7 +20,7 @@ import pl.iosx.quiz4wp.utilities.Utilities;
  */
 
 
-public abstract class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback {
+public abstract class BaseActivity extends AppCompatActivity implements IMvpView, BaseFragment.Callback {
 
     private ProgressDialog progressDialog;
 
@@ -87,9 +86,8 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     }
 
     @Override
-    public void openStartActivity() {
-        startActivity(MainActivity.getIntent(this));
-        finish();
+    public void openBaseActivity() {
+
     }
 
     @Override

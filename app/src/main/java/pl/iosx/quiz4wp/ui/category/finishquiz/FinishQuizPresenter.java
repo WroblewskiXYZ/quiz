@@ -5,20 +5,18 @@ import android.content.Context;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModelHelper;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QRate;
 import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
-import pl.iosx.quiz4wp.ui.category.CategoryFinishQuizCallback;
+import pl.iosx.quiz4wp.ui.category.ICategoryFinishQuizCallback;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresenter<V> implements FinishQuizMvpPresenter<V>,DbManager.OperationListener {
+public class FinishQuizPresenter<V extends IFinishQuizMvpView> extends BasePresenter<V> implements IFinishQuizMvpPresenter<V>,DbManager.OperationListener {
 
-    CategoryFinishQuizCallback categoryFinishQuizCallback;
+    ICategoryFinishQuizCallback categoryFinishQuizCallback;
     private QuizModel finishedQuiz;
 
     public FinishQuizPresenter(Context context) {
@@ -68,7 +66,7 @@ public class FinishQuizPresenter<V extends FinishQuizMvpView> extends BasePresen
     }
 
     @Override
-    public void setCallback(CategoryFinishQuizCallback callback) {
+    public void setCallback(ICategoryFinishQuizCallback callback) {
         this.categoryFinishQuizCallback = callback;
     }
 

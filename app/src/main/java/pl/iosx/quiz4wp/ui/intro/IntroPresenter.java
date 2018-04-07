@@ -11,7 +11,7 @@ import pl.iosx.quiz4wp.ui.base.BasePresenter;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class IntroPresenter<V extends IntroMvpView> extends BasePresenter<V> implements IntroMvpPresenter<V>{
+public class IntroPresenter<V extends IIntroMvpView> extends BasePresenter<V> implements IIntroMvpPresenter<V> {
 
     static final String TAG = "IntroPresenter";
     private static final int GOTO_ACTIVITY_DELAY = 1000;

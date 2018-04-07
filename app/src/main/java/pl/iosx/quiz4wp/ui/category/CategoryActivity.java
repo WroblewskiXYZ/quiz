@@ -1,19 +1,13 @@
 package pl.iosx.quiz4wp.ui.category;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.ViewParent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.ui.base.BaseActivity;
 import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListFragment;
@@ -21,11 +15,11 @@ import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
 import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizFragment;
 import pl.iosx.quiz4wp.ui.category.finishquiz.FinishQuizPresenter;
 import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizFragment;
-import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
+import pl.iosx.quiz4wp.ui.category.playquiz.IPlayQuizMvpPresenter;
 
-public class CategoryActivity extends BaseActivity implements CategoryMvpView{
+public class CategoryActivity extends BaseActivity implements ICategoryMvpView {
 
-    CategoryMvpPresenter categoryMvpPresenter;
+    ICategoryMvpPresenter categoryMvpPresenter;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, CategoryActivity.class);
@@ -58,7 +52,7 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpView{
     }
 
     @Override
-    public void onPlayQuizShow(int screen, PlayQuizMvpPresenter playQuizMvpPresenter) {
+    public void onPlayQuizShow(int screen, IPlayQuizMvpPresenter playQuizMvpPresenter) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         PlayQuizFragment fragment = PlayQuizFragment.newInstance();
         fragment.setRetainInstance(true);

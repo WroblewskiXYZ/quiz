@@ -10,14 +10,13 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.ui.base.BaseActivity;
 import pl.iosx.quiz4wp.ui.category.CategoryActivity;
 
-public class IntroActivity extends BaseActivity implements IntroMvpView {
+public class IntroActivity extends BaseActivity implements IIntroMvpView {
 
-    IntroMvpPresenter<IntroMvpView> presenter;
+    IIntroMvpPresenter<IIntroMvpView> presenter;
 
     @BindView(R.id.btn_retry)
     Button btnRetry;

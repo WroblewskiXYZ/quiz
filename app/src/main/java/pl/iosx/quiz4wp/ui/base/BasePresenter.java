@@ -6,7 +6,7 @@ import android.content.Context;
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class BasePresenter<V extends MvpView> extends Presenter implements MvpPresenter<V> {
+public class BasePresenter<V extends IMvpView> extends Presenter implements IMvpPresenter<V> {
 
     protected Context context;
 

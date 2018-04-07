@@ -1,16 +1,13 @@
 package pl.iosx.quiz4wp.ui.category.playquiz;
 
-import java.util.List;
-
-import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
-import pl.iosx.quiz4wp.ui.base.MvpView;
+import pl.iosx.quiz4wp.ui.base.IMvpView;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public interface PlayQuizMvpView extends MvpView {
+public interface IPlayQuizMvpView extends IMvpView {
 
     void onQuestionTitleUpdate(String title);
 

@@ -2,9 +2,6 @@ package pl.iosx.quiz4wp.ui.category.playquiz;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +12,19 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.iosx.quiz4wp.R;
-import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
 import pl.iosx.quiz4wp.ui.base.BaseFragment;
-import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
-import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListPresenter;
-import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListRecyclerAdapter;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
-        implements PlayQuizMvpView {
+public class PlayQuizFragment<V extends IPlayQuizMvpView> extends BaseFragment
+        implements IPlayQuizMvpView {
 
 
     @BindView(R.id.tv_title)
@@ -60,7 +51,7 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
     @BindView(R.id.btn_answer4)
     Button btnAnswer4;
 
-    PlayQuizMvpPresenter<PlayQuizMvpView> presenter;
+    IPlayQuizMvpPresenter<IPlayQuizMvpView> presenter;
 
     public static PlayQuizFragment newInstance() {
         Bundle args = new Bundle();
@@ -69,7 +60,7 @@ public class PlayQuizFragment<V extends PlayQuizMvpView> extends BaseFragment
         return fragment;
     }
 
-    public void setPresenter(PlayQuizMvpPresenter<PlayQuizMvpView> presenter) {
+    public void setPresenter(IPlayQuizMvpPresenter<IPlayQuizMvpView> presenter) {
         this.presenter = presenter;
     }
 

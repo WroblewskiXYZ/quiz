@@ -3,7 +3,6 @@ package pl.iosx.quiz4wp.components;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import pl.iosx.quiz4wp.MainActivity;
 import pl.iosx.quiz4wp.QuizApp;
 import pl.iosx.quiz4wp.ui.base.Presenter;
 
@@ -15,6 +14,5 @@ import pl.iosx.quiz4wp.ui.base.Presenter;
 public interface ApplicationComponent{
 
     void inject(QuizApp quizApp);
-    void inject(MainActivity activity);
     void inject(Presenter presenter);
 }

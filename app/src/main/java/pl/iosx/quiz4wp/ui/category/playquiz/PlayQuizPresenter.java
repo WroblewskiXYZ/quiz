@@ -3,8 +3,6 @@ package pl.iosx.quiz4wp.ui.category.playquiz;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import java.util.List;
-
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QAnswer;
@@ -12,17 +10,15 @@ import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QQuestion;
 import pl.iosx.quiz4wp.model.data.logic.PlayQuizBoard;
 import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
-import pl.iosx.quiz4wp.ui.category.CategoryPlayQuizCallback;
-import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpPresenter;
-import pl.iosx.quiz4wp.ui.category.filteredquizlist.FilteredQuizListMvpView;
+import pl.iosx.quiz4wp.ui.category.ICategoryPlayQuizCallback;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<V> implements PlayQuizMvpPresenter<V>,DbManager.OperationListener {
+public class PlayQuizPresenter<V extends IPlayQuizMvpView> extends BasePresenter<V> implements IPlayQuizMvpPresenter<V>,DbManager.OperationListener {
 
-    CategoryPlayQuizCallback categoryPlayQuizCallback;
+    ICategoryPlayQuizCallback categoryPlayQuizCallback;
     QuizModel quizModel;
     PlayQuizBoard playQuizBoard;
 
@@ -111,7 +107,7 @@ public class PlayQuizPresenter<V extends PlayQuizMvpView> extends BasePresenter<
     }
 
     @Override
-    public void setCallBack(CategoryPlayQuizCallback callBack) {
+    public void setCallBack(ICategoryPlayQuizCallback callBack) {
         this.categoryPlayQuizCallback = callBack;
     }
 

@@ -6,7 +6,7 @@ import android.support.annotation.StringRes;
  * Created by lukaszwroblewski on 02.04.2018.
  */
 
-public interface MvpView {
+public interface IMvpView {
 
     void showLoading();
 
@@ -16,7 +16,7 @@ public interface MvpView {
 
     void showMessage(@StringRes int resId);
 
-    void openStartActivity();
+    void openBaseActivity();
 
     boolean isNetworkConnected();
 }

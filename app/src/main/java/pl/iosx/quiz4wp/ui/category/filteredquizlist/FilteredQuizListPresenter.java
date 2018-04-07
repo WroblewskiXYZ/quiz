@@ -7,21 +7,18 @@ import java.util.List;
 import pl.iosx.quiz4wp.R;
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
 import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
-import pl.iosx.quiz4wp.model.services.ContentManager.ContentManagerModules;
 import pl.iosx.quiz4wp.ui.base.BasePresenter;
-import pl.iosx.quiz4wp.ui.category.CategoryFilteredListCallback;
-import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizMvpPresenter;
-import pl.iosx.quiz4wp.ui.category.playquiz.PlayQuizPresenter;
+import pl.iosx.quiz4wp.ui.category.ICategoryFilteredListCallback;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class FilteredQuizListPresenter<V extends FilteredQuizListMvpView> extends BasePresenter<V>
-implements FilteredQuizListMvpPresenter<V>{
+public class FilteredQuizListPresenter<V extends IFilteredQuizListMvpView> extends BasePresenter<V>
+implements IFilteredQuizListMvpPresenter<V> {
 
     List<QuizModel> models;
-    CategoryFilteredListCallback filteredListCallback;
+    ICategoryFilteredListCallback filteredListCallback;
 
     public FilteredQuizListPresenter(Context context) {
         super(context);
@@ -65,7 +62,7 @@ implements FilteredQuizListMvpPresenter<V>{
     }
 
     @Override
-    public void setCallback(CategoryFilteredListCallback callback) {
+    public void setCallback(ICategoryFilteredListCallback callback) {
         this.filteredListCallback = callback;
     }
 

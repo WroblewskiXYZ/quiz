@@ -6,25 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.iosx.quiz4wp.R;
-import pl.iosx.quiz4wp.model.data.dataUnit.baseModel.QImage;
 import pl.iosx.quiz4wp.ui.base.BaseFragment;
 
 /**
  * Created by lukaszwroblewski on 03.04.2018.
  */
 
-public class FinishQuizFragment<V extends FinishQuizMvpView> extends BaseFragment
-        implements FinishQuizMvpView {
+public class FinishQuizFragment<V extends IFinishQuizMvpView> extends BaseFragment
+        implements IFinishQuizMvpView {
 
 
     @BindView(R.id.tv_title)
@@ -42,7 +37,7 @@ public class FinishQuizFragment<V extends FinishQuizMvpView> extends BaseFragmen
     @BindView(R.id.btn_repeat)
     Button btnRepeat;
 
-    FinishQuizMvpPresenter<FinishQuizMvpView> presenter;
+    IFinishQuizMvpPresenter<IFinishQuizMvpView> presenter;
 
     public static FinishQuizFragment newInstance() {
         Bundle args = new Bundle();
@@ -51,7 +46,7 @@ public class FinishQuizFragment<V extends FinishQuizMvpView> extends BaseFragmen
         return fragment;
     }
 
-    public void setPresenter(FinishQuizMvpPresenter<FinishQuizMvpView> presenter) {
+    public void setPresenter(IFinishQuizMvpPresenter<IFinishQuizMvpView> presenter) {
         this.presenter = presenter;
 
     }
