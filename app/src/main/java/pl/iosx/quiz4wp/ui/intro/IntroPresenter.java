@@ -14,7 +14,7 @@ import pl.iosx.quiz4wp.ui.base.BasePresenter;
 public class IntroPresenter<V extends IntroMvpView> extends BasePresenter<V> implements IntroMvpPresenter<V>{
 
     static final String TAG = "IntroPresenter";
-    private static final int GOTO_ACTIVITY_DELAY = 3000;
+    private static final int GOTO_ACTIVITY_DELAY = 1000;
 
     public IntroPresenter(Context context)
     {
@@ -75,8 +75,7 @@ public class IntroPresenter<V extends IntroMvpView> extends BasePresenter<V> imp
                 @Override
                 public void onContentReady(boolean download) {
                     mvpView.updateProgressbarStatus(false,0);
-                    mvpView.updateStatusLabel(context.getString(R.string.content_ready));
-                    mvpView.changeButtonRetryStatus(true,true);
+                    mvpView.updateStatusLabel(context.getString(R.string.content_goto_category));
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
