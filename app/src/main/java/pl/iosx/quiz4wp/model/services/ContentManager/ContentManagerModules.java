@@ -3,6 +3,7 @@ package pl.iosx.quiz4wp.model.services.ContentManager;
 import java.util.List;
 
 import pl.iosx.quiz4wp.model.data.dataUnit.QuizModel;
+import pl.iosx.quiz4wp.model.data.dataUnit.QuizModelHelper;
 import pl.iosx.quiz4wp.model.services.ApiManager.ApiManager;
 import pl.iosx.quiz4wp.model.services.DbManager.DbManager;
 
@@ -21,8 +22,15 @@ public class ContentManagerModules {
                 contentManager.apiManager.downloadAllEmptyQuizModelsAsync(new ApiManager.ApiResponseListener() { // download all quiz in async mode
                     @Override
                     public void onReceived(List<QuizModel> models) {
+                        List<QuizModel> newOnes = null;
+                        newOnes = QuizModelHelper.ReturnNewQuizzes(contentManager.getQuizModels(),models);
 
-                        ReportContentDownload(contentManager,checkBaseListener,models,downloadContents);
+                        if(newOnes!=null && newOnes.size()>0)
+                            ReportContentDownload(contentManager,checkBaseListener,models,downloadContents);
+                        else if(contentManager.getQuizModels()!=null && contentManager.getQuizModels().size()>0)
+                            UpdateAllContent(contentManager,checkBaseListener);
+                        else
+                            ReportFailure(contentManager,checkBaseListener);
                     }
 
                     @Override
